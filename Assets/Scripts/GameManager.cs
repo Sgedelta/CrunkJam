@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     public bool DEBUG {  get { return debug; } }
 
 
-    [SerializeField] MicroGameManager DEBUGForceMicroManager;
+    [SerializeField] private MicroGameManager DEBUGForceMicroManager; //if filled && DEBUG, will start the micro game manager on start, for testing
+    [SerializeField] private string DEBUGForceGameLoad; //if filled && DEBUG, will only load the given microgame, for testing
 
     private InputManager inputManager;
+    private GameSwitcher gameSwitcher;
 
     public KeyCode inputA = KeyCode.Alpha1;
     public KeyCode inputB = KeyCode.Alpha5;
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
         grabBag = new List<string>();
 
         inputManager = gameObject.GetComponent<InputManager>();
+        gameSwitcher = gameObject.GetComponent<GameSwitcher>();
 
         Restart(); // Set all values to the default and reset grabBag
 
@@ -90,9 +93,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Should be called whenever one Microgame Ends, from its respective MicrogameManager. The bool is whether or not the player successfully completed said microgame
-    public void LoadNewMicrogame(bool successful) 
+    /// <summary>
+    /// Should be called whenever one Microgame Ends, from its respective MicrogameManager.
+    /// The bool is whether or not the player successfully completed said microgame.
+    /// </summary>
+    /// <param name="successful"></param>
+    public void EndMicrogame(bool successful)
     {
+
         // if the microgame was lost, decrease the health
         if (!successful)
         {
@@ -112,6 +120,15 @@ public class GameManager : MonoBehaviour
             minigamesCompleted++;
         }
 
+        //TODO: implement transition scene here (or in relevant GameSwitcher method)
+    }
+
+    /// <summary>
+    /// Loads a random microgame from the bag if there are any in there, or a random one otherwise
+    /// </summary>
+    public void LoadNewMicrogame() 
+    {
+        string chosenGame = "";
         // Regardless of if the last game was won or lost, so long as the player has health left (if they didn't this wouldn't run),
         // start the next minigame taking into account potential grabBag if the player hasn't seen all minigames yet
         if (grabBag.Count > 0)
@@ -123,6 +140,23 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(minigames[Random.Range(0, minigames.Count)]);
         }
+
+        if(DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
+        {
+            chosenGame = DEBUGForceGameLoad;
+        }
+
+        //TODO: implement transition scene here (or in GameSwitcher)
+        gameSwitcher.LoadMicrogame(chosenGame);
+    }
+
+    /// <summary>
+    /// initializes the given MicroGameManager with the correct inputManager
+    /// </summary>
+    /// <param name="mm"></param>
+    public void IntializeManager(MicroGameManager mm)
+    {
+        mm.Initialize(inputManager);
     }
 
     // To call before any new run starts
