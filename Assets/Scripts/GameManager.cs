@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
     public int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
-    public int health;              // each game failed removes 1 from health.
+    public int health = 3;              // each game failed removes 1 from health. //default 3 for testing
 
     List<string> minigames;  // List of every potential minigame, the saved strings are the names of their scenes to be loaded
     List<string> grabBag;    // The list of minigames, sorted at random per game, to be played in that order so that the player sees all minigames before true random
