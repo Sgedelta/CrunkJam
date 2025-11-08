@@ -2,6 +2,7 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class GameManager : MonoBehaviour
     private InputManager inputManager;
     private GameSwitcher gameSwitcher;
 
-    public KeyCode inputA = KeyCode.Alpha1;
-    public KeyCode inputB = KeyCode.Alpha5;
+    [SerializeField] public InputActionReference inputA;
+    [SerializeField] public InputActionReference inputB;
 
     private int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
     private int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
         set { difficulty = value; }
     }
 
-    private int health = 3;              // each game failed removes 1 from health. //default 3 for testing
+    private int health = 3; // each game failed removes 1 from health. //default 3 for testing
     public int Health // properties primarily so that we can call proper animation/display methods when we change these things later - Sam
     {
         get { return health; }
@@ -60,18 +61,6 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // input keys are 1 and 5 respectively, by default
-        if(inputA == KeyCode.None)
-        {
-            inputA = KeyCode.Alpha1;
-
-        }
-
-        if(inputB == KeyCode.None)
-        {
-            inputB = KeyCode.Alpha5;
-
-        }
 
         grabBag = new List<string>();
 
@@ -85,12 +74,6 @@ public class GameManager : MonoBehaviour
             DEBUGForceMicroManager.Initialize(inputManager);
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>

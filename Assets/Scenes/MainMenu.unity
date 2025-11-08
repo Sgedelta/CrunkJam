@@ -707,6 +707,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
+      propertyPath: inputA
+      value: 
+      objectReference: {fileID: 4504277700501639523, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
+    - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
+      propertyPath: inputB
+      value: 
+      objectReference: {fileID: -4370368960670153325, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
+    - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
       propertyPath: DEBUGForceGameLoad
       value: InputTesting
       objectReference: {fileID: 0}

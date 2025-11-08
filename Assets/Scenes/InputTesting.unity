@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  rotationAmnt: 30
+  rotationAmnt: 45
   player: {fileID: 1062015887}
 --- !u!1 &2043621767
 GameObject:
