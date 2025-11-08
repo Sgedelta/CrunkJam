@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [SerializeField] private bool debug = false; //a general debug state for the project, set in editor
+    public bool DEBUG {  get { return debug; } }
+
+
+    [SerializeField] MicroGameManager DEBUGForceMicroManager;
+
+    private InputManager inputManager;
+
     public KeyCode inputA = KeyCode.Alpha1;
     public KeyCode inputB = KeyCode.Alpha5;
 
@@ -25,7 +33,7 @@ public class GameManager : MonoBehaviour
         set { health = value; }
     }
 
-    List<string> minigames;  // List of every potential minigame, the saved strings are the names of their scenes to be loaded
+    [SerializeField] List<string> minigames;  // List of every potential minigame, the saved strings are the names of their scenes to be loaded
     List<string> grabBag;    // The list of minigames, sorted at random per game, to be played in that order so that the player sees all minigames before true random
 
     private void Awake()
@@ -63,7 +71,17 @@ public class GameManager : MonoBehaviour
 
         }
 
+        grabBag = new List<string>();
+
+        inputManager = gameObject.GetComponent<InputManager>();
+
         Restart(); // Set all values to the default and reset grabBag
+
+        if (DEBUG && DEBUGForceMicroManager != null)
+        {
+            DEBUGForceMicroManager.Initialize(inputManager);
+        }
+
     }
 
     // Update is called once per frame
@@ -123,7 +141,7 @@ public class GameManager : MonoBehaviour
             // Take a random name from minigames that has not yet been selected,
             // assign it to the current grabBag position, then remove it from the pool
             name = minigamesCopy[Random.Range(0, minigames.Count)];
-            grabBag[i] = name;
+            grabBag.Add(name);
             minigamesCopy.Remove(name);
         }
     }
