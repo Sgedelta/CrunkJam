@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         // start the next minigame taking into account potential grabBag if the player hasn't seen all minigames yet
         if (grabBag.Count > 0)
         {
-            SceneManager.LoadScene(grabBag[0]);
+            chosenGame = grabBag[0];
             grabBag.RemoveAt(0);
         }
         else
