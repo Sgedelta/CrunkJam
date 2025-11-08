@@ -1,15 +1,16 @@
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
     //Defining all the events:
 
-    public event Action OnAPressed;
-    public event Action OnBPressed;
-    public event Action OnBothPressed;
-    public event Action OnAHeld;
-    public event Action OnBHeld;
+    public UnityEvent OnAPressed;
+    public UnityEvent OnBPressed;
+    public UnityEvent OnBothPressed;
+    public UnityEvent OnAHeld;
+    public UnityEvent OnBHeld;
 
 
     //keycodes so that inputmanager has a local copy -- will intialize these values in Start()
@@ -19,8 +20,8 @@ public class InputManager : MonoBehaviour
     {
         //get keyA and keyB values from the gamemanager(this way if the keycode is changed it changes here too)
         //KeyA = gameManager.inputA or something idk
-        KeyA = GameManager.Instance.inputA;
-        KeyB = GameManager.Instance.inputB;
+        keyA = GameManager.Instance.inputA;
+        keyB = GameManager.Instance.inputB;
     }
 
     private void Update() //VERY VERY BAREBONES -- can and SHOULD be improved upon its 5:45 am cut me some slack

@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEditor.SearchService;
 using UnityEngine;
 using System.Collections.Generic;
@@ -8,12 +7,23 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public KeyCode inputA;
-    public KeyCode inputB;
+    public KeyCode inputA = KeyCode.Alpha1;
+    public KeyCode inputB = KeyCode.Alpha5;
 
-    int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
-    public int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
-    public int health = 3;              // each game failed removes 1 from health. //default 3 for testing
+    private int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
+    private int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
+    public int Difficulty // properties primarily so that we can call proper animation/display methods when we change these things later - Sam
+    {
+        get { return difficulty; }
+        set { difficulty = value; }
+    }
+
+    private int health = 3;              // each game failed removes 1 from health. //default 3 for testing
+    public int Health // properties primarily so that we can call proper animation/display methods when we change these things later - Sam
+    {
+        get { return health; }
+        set { health = value; }
+    }
 
     List<string> minigames;  // List of every potential minigame, the saved strings are the names of their scenes to be loaded
     List<string> grabBag;    // The list of minigames, sorted at random per game, to be played in that order so that the player sees all minigames before true random
@@ -21,7 +31,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         //Check if there is no instance of this GameManager that exists.
-        if (Instance == null)
+        if (Instance == null && Instance != this)
         {
             //Set the gameObject this script is attached to as the single instance of the GameManager.
             Instance = this;
@@ -40,9 +50,18 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // input keys are 1 and 5 respectively
-        inputA = KeyCode.Alpha1;
-        inputB = KeyCode.Alpha5;
+        // input keys are 1 and 5 respectively, by default
+        if(inputA == KeyCode.None)
+        {
+            inputA = KeyCode.Alpha1;
+
+        }
+
+        if(inputB == KeyCode.None)
+        {
+            inputB = KeyCode.Alpha5;
+
+        }
 
         Restart(); // Set all values to the default and reset grabBag
     }
