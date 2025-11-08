@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class DefenseMGMangager : MicroGameManager
 {
-    [SerializeField] GameObject defender;
-    [SerializeField] private Vector3 upPosition = new Vector3(2.5f, 2.5f, 0);
-    [SerializeField] private Vector3 downPosition = new Vector3(2.5f, -2.5f, 0);
+    [SerializeField] public GameObject defender;
+    [SerializeField] public Vector2 defaultPos = new Vector2(2.5f, 0);
+    [SerializeField] public float verticalChange = 3;
+
+    [SerializeField] GameObject evilGuy;
+
     public override void Initialize(InputManager im)
     {
         im.OnAHeld.AddListener(MoveUp);
@@ -44,7 +47,7 @@ public class DefenseMGMangager : MicroGameManager
     /// </summary>
     public void MoveUp()
     {
-        defender.transform.position = upPosition;
+        defender.transform.position = new Vector2(defaultPos.x, defaultPos.y +verticalChange);
         Debug.Log("up");
     }
 
@@ -53,7 +56,7 @@ public class DefenseMGMangager : MicroGameManager
     /// </summary>
     public void MoveDown()
     {
-        defender.transform.position = downPosition;
+        defender.transform.position = new Vector2(defaultPos.x, defaultPos.y - verticalChange);
         Debug.Log("down");
     }
 
@@ -62,6 +65,21 @@ public class DefenseMGMangager : MicroGameManager
     /// </summary>
     public void ResetPosition()
     {
+        defender.transform.position = new Vector2(2.5f, 0);
+    }
 
+    public void MoveEvilGuy()
+    {
+        int toMove = Mathf.FloorToInt(Random.Range(0, 3));
+
+        //switch (toMove)
+        //{
+        //    case 0:
+        //        defender.transform.position = downPosition;
+        //    case 1:
+        //        defender.transform.position = middlePosition;
+        //    default:
+        //        break;
+        //}
     }
 }
