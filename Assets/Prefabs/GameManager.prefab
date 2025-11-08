@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70945aa46047b9046a4e477f4940662d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
+  debug: 0
   DEBUGForceMicroManager: {fileID: 0}
   inputA: 49
   inputB: 53
