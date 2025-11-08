@@ -16,6 +16,8 @@ public class ExampleMicroManager : MicroGameManager
     private Vector2 dir = Vector2.right;
     private float dirAngle = 0;
 
+    private int moveDir = 0;
+
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -27,6 +29,11 @@ public class ExampleMicroManager : MicroGameManager
 
         //load the scene
         LoadScene();
+    }
+
+    private void Update()
+    {
+        Move(moveDir);
     }
 
     public override void LoadScene()
@@ -47,6 +54,24 @@ public class ExampleMicroManager : MicroGameManager
 
         inputManager.OnAHeld.AddListener(MoveNeg);
         inputManager.OnBHeld.AddListener(MovePos);
+
+        inputManager.OnAHoldReleased.AddListener(MoveReset);
+        inputManager.OnBHoldReleased.AddListener(MoveReset);
+
+        inputManager.OnBothPressed.AddListener(() =>
+        {
+            Debug.Log("Both Pressed");
+        });
+
+        inputManager.OnBothHeld.AddListener(() =>
+        {
+            Debug.Log("Both Held");
+        });
+
+        inputManager.OnBothHoldReleased.AddListener(() =>
+        {
+            Debug.Log("Both Released");
+        });
     }
 
     public void Move(int moveDirection)
@@ -56,12 +81,17 @@ public class ExampleMicroManager : MicroGameManager
 
     public void MovePos()
     {
-        Move(1);
+        moveDir = 1;
     }
 
     public void MoveNeg()
     {
-        Move(-1);
+        moveDir = -1;
+    }
+
+    public void MoveReset()
+    {
+        moveDir = 0;
     }
 
     public void Rotate(float degrees)
