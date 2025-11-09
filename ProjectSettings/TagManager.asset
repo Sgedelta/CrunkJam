@@ -7,6 +7,9 @@ TagManager:
   - Laser
   - Alien
   - Obstacle
+  - cage
+  - player
+  - food
   layers:
   - Default
   - TransparentFX
