@@ -85,6 +85,9 @@ public class WalkGameManager : MicroGameManager
 
         inputManager.OnAHoldReleased.AddListener(MoveRightReset);
         inputManager.OnBHoldReleased.AddListener(MoveUpReset);
+
+        inputManager.OnBothHeld.AddListener(MoveBothDirections);
+        inputManager.OnBothHoldReleased.AddListener(MoveBothDirectionsReset);
     }
     
     public void MoveRight()
@@ -97,6 +100,12 @@ public class WalkGameManager : MicroGameManager
         playerScript.MoveUp();
     }
 
+    public void MoveBothDirections()
+    {
+        playerScript.MoveRight();
+        playerScript.MoveUp();
+    }
+
     public void MoveRightReset()
     {
         playerScript.MoveRightReset();
@@ -104,6 +113,12 @@ public class WalkGameManager : MicroGameManager
 
     public void MoveUpReset()
     {
+        playerScript.MoveUpReset();
+    }
+
+    public void MoveBothDirectionsReset()
+    {
+        playerScript.MoveRightReset();
         playerScript.MoveUpReset();
     }
     
@@ -144,6 +159,7 @@ public class WalkGameManager : MicroGameManager
         isGameWon = true;
         inputManager.OnAHeld.RemoveAllListeners();
         inputManager.OnBHeld.RemoveAllListeners();
+        inputManager.OnBothHeld.RemoveAllListeners();
         gameManagerScript.EndMicrogame(true);
         Debug.Log("You Win!");
     }
@@ -156,6 +172,7 @@ public class WalkGameManager : MicroGameManager
         isGameOver = true;
         inputManager.OnAHeld.RemoveAllListeners();
         inputManager.OnBHeld.RemoveAllListeners();
+        inputManager.OnBothHeld.RemoveAllListeners();
         gameManagerScript.EndMicrogame(false);
     }
 

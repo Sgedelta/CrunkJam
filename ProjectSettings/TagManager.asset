@@ -6,6 +6,7 @@ TagManager:
   tags:
   - cage
   - player
+  - food
   layers:
   - Default
   - TransparentFX

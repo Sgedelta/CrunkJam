@@ -115,7 +115,4 @@ public class ExampleMicroManager : MicroGameManager
     {
         Rotate(-rotationAmnt);
     }
-
-
-
 }
