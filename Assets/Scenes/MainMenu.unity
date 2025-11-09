@@ -605,6 +605,86 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: BBshake
+      value: 
+      objectReference: {fileID: 8300000, guid: c631755249ec8cf41a6c18b7974ee85b, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: BBprinted
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c4883423ca5b1d41b93ce58983aeb2a, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: craneMove
+      value: 
+      objectReference: {fileID: 8300000, guid: ff21b91a3dd0f4b47ba494e54b63787b, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: stompSpike
+      value: 
+      objectReference: {fileID: 8300000, guid: f7fa4193533f3194ba3bd5a06b35f1f5, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: stompStomp
+      value: 
+      objectReference: {fileID: 8300000, guid: 19c03e8d1c2a1c9439041b59afc01dba, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: catchBasket
+      value: 
+      objectReference: {fileID: 8300000, guid: 6a1ff2d8555410145aaabb8eb4553b76, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: catchGround
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d224362226249f43b8feefa238b37a7, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: craneSquish
+      value: 
+      objectReference: {fileID: 8300000, guid: 5f5daf5c7f11d2b4db8f8cbdf1385435, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: dontExplode
+      value: 
+      objectReference: {fileID: 8300000, guid: a8f2f8daee056124bbf7577788e646fa, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: stompSquish
+      value: 
+      objectReference: {fileID: 8300000, guid: 31fce593e191a134e8ae15264a606d15, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: feedAlienNeg
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a31cac76c9be9446aed23ffa6110ef9, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: feedAlienPos
+      value: 
+      objectReference: {fileID: 8300000, guid: 38dfbacd02deba640beaac1e627feab9, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: feedPickFood
+      value: 
+      objectReference: {fileID: 8300000, guid: 400fd27644b3dfe44a279ce3f0b3956f, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: countAlienRun
+      value: 
+      objectReference: {fileID: 8300000, guid: f1710627e695fde488163d968c5d7049, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: countNumberUp
+      value: 
+      objectReference: {fileID: 8300000, guid: cf274c6abf977af4b94ab1b58d79eda6, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: walkAlienWalk
+      value: 
+      objectReference: {fileID: 8300000, guid: c3c0b0953846f3043ae64171e2169660, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: containerEscape
+      value: 
+      objectReference: {fileID: 8300000, guid: f8a25fd1db80c7847ba9dcc53db2a55a, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: countNumberDown
+      value: 
+      objectReference: {fileID: 8300000, guid: 993de32c7b1048f4f8b8d4c5ce98616c, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: defendGuyMoving
+      value: 
+      objectReference: {fileID: 8300000, guid: cf6a5952aa0588a489c7eef4f001b426, type: 3}
+    - target: {fileID: 3870358153676464042, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: walkAlienEnterCage
+      value: 
+      objectReference: {fileID: 8300000, guid: 5bdc0b2b52d0539408ab29bdfd4d8179, type: 3}
     - target: {fileID: 5337473660233229271, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
       propertyPath: m_Name
       value: GameManager
