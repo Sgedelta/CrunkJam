@@ -187,11 +187,12 @@ MonoBehaviour:
   feedingLeft: 0
   feedingRight: 0
   iterator: 0
-  timer: 100
+  timer: 20
   redGuy: {fileID: 654713654}
   blueGuy: {fileID: 1982649293}
   timerTextUI: {fileID: 693654037}
   gameManagerObj: {fileID: 1569966706}
+  count: 0
 --- !u!4 &524997389
 Transform:
   m_ObjectHideFlags: 0
@@ -461,6 +462,7 @@ GameObject:
   - component: {fileID: 672531841}
   - component: {fileID: 672531844}
   - component: {fileID: 672531843}
+  - component: {fileID: 672531845}
   m_Layer: 0
   m_Name: Food 3
   m_TagString: food
@@ -601,6 +603,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &672531845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672531840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108c3b395b54a8940a69698fc266fd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &693654035
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +707,7 @@ GameObject:
   - component: {fileID: 1257752953}
   - component: {fileID: 1257752956}
   - component: {fileID: 1257752955}
+  - component: {fileID: 1257752957}
   m_Layer: 0
   m_Name: Food 2
   m_TagString: food
@@ -832,6 +848,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1257752957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257752952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108c3b395b54a8940a69698fc266fd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &1487224690
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +965,7 @@ GameObject:
   - component: {fileID: 1547421963}
   - component: {fileID: 1547421966}
   - component: {fileID: 1547421965}
+  - component: {fileID: 1547421967}
   m_Layer: 0
   m_Name: Food 4
   m_TagString: food
@@ -1076,6 +1106,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1547421967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547421962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108c3b395b54a8940a69698fc266fd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &1569966706 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 160064179418279088, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
@@ -1195,6 +1238,7 @@ GameObject:
   - component: {fileID: 1717080726}
   - component: {fileID: 1717080729}
   - component: {fileID: 1717080728}
+  - component: {fileID: 1717080730}
   m_Layer: 0
   m_Name: Food 5
   m_TagString: food
@@ -1335,6 +1379,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1717080730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717080725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108c3b395b54a8940a69698fc266fd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &1754867337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1404,7 @@ GameObject:
   - component: {fileID: 1754867338}
   - component: {fileID: 1754867341}
   - component: {fileID: 1754867340}
+  - component: {fileID: 1754867342}
   m_Layer: 0
   m_Name: Food 1
   m_TagString: food
@@ -1487,6 +1545,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1754867342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754867337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108c3b395b54a8940a69698fc266fd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
 --- !u!1 &1982649293
 GameObject:
   m_ObjectHideFlags: 0
