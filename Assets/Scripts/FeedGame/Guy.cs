@@ -9,6 +9,10 @@ public class RedGuy : MonoBehaviour
     [Header("Color of Alien")]
     [SerializeField] private int color;
 
+    [SerializeField] public SpriteRenderer sr;
+    [SerializeField] public Sprite s1;
+    [SerializeField] public Sprite s2;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,6 +46,9 @@ public class RedGuy : MonoBehaviour
                 // If player feeds wrong food to alien, game over!
                 feedGameManagerScript.GameOver();
             }
+
+            // change the sprite back to normal (closed mouth)
+            sr.sprite = s1;
 
             // Hook up Win State here! Render edit: (handled within feedGameManager)
             if (feedGameManagerScript.count >= 5)

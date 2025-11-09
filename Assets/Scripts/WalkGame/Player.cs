@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
         {
             this.transform.position += (Vector3)Vector2.up * moveSpeed * Time.deltaTime;
         }
+
     }
 
     public void MoveRight()

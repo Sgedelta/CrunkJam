@@ -32,8 +32,6 @@ public class FeedGameManager : MicroGameManager
     [Header("TimerUI")]
     [SerializeField] private Text timerTextUI;
 
-    [Header("GameManager")]
-    [SerializeField] private GameObject gameManagerObj;
 
     private GameManager gameManagerScript;
 
@@ -59,10 +57,8 @@ public class FeedGameManager : MicroGameManager
         LoadScene();
 
         // grab reference to Game Manager script
-        if (gameManagerObj)
-        {
-            gameManagerScript = gameManagerObj.GetComponent<GameManager>();
-        }
+        gameManagerScript = GameManager.Instance;
+        
 
         // get min and max of the screen from camera viewport
         screenMin = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
@@ -85,8 +81,8 @@ public class FeedGameManager : MicroGameManager
 
     protected override void BindInput()
     {
-        //inputManager.OnAPressed.AddListener(FeedLeft);
-        //inputManager.OnBPressed.AddListener(FeedRight);
+        inputManager.OnAPressed.AddListener(FeedLeft);
+        inputManager.OnBPressed.AddListener(FeedRight);
         inputManager.OnAHeld.AddListener(FeedLeft);
         inputManager.OnBHeld.AddListener(FeedRight);
         
@@ -134,11 +130,13 @@ public class FeedGameManager : MicroGameManager
     public void FeedLeft()
     {
         feedingLeft = true;
+        redGuy.GetComponent<RedGuy>().sr.sprite = redGuy.GetComponent<RedGuy>().s2;
     }
 
     public void FeedRight()
     {
         feedingRight = true;
+        blueGuy.GetComponent<RedGuy>().sr.sprite = blueGuy.GetComponent<RedGuy>().s2;
     }
 
     public void FeedLeftReset()

@@ -82,11 +82,10 @@ public class WalkGameManager : MicroGameManager
     {
         inputManager.OnBHeld.AddListener(MoveRight);
         inputManager.OnAHeld.AddListener(MoveUp);
+        inputManager.OnBothHeld.AddListener(MoveBothDirections);
 
         inputManager.OnAHoldReleased.AddListener(MoveRightReset);
         inputManager.OnBHoldReleased.AddListener(MoveUpReset);
-
-        inputManager.OnBothHeld.AddListener(MoveBothDirections);
         inputManager.OnBothHoldReleased.AddListener(MoveBothDirectionsReset);
     }
     
