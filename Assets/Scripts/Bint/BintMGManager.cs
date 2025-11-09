@@ -35,7 +35,7 @@ public class BintMGManager : MicroGameManager
         BindInput(); //this has to be made later
 
         //initialize any variables you would normally do in Start here
-        shakesGoal = (int)(25 * difficultyCoeff);
+        shakesGoal = (int)(25 * (0.75 * GameManager.Instance.Difficulty));
 
         //load the scene
         LoadScene();

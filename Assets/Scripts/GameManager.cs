@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField] private bool debug = false; //a general debug state for the project, set in editor
-    public bool DEBUG {  get { return debug; } }
+    public bool DEBUG { get { return debug; } }
 
 
     [SerializeField] private MicroGameManager DEBUGForceMicroManager; //if filled && DEBUG, will start the micro game manager on start, for testing
@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     private GameObject DoorAnimationParent;
 
     private int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
+    private int minigamesCompleted = 0;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
+
+    public int MinigamesCompleted { get { return minigamesCompleted; } }
     private int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
     public int Difficulty // properties primarily so that we can call proper animation/display methods when we change these things later - Sam
     {
@@ -125,7 +128,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
                 EditorApplication.ExitPlaymode();
 #endif
-                
+
                 return;
             }
         }
@@ -191,7 +194,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(minigames[Random.Range(0, minigames.Count)]);
         }
 
-        if(DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
+        if (DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
         {
             chosenGame = DEBUGForceGameLoad;
         }
