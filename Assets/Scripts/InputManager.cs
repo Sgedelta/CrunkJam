@@ -190,9 +190,6 @@ public class InputManager : MonoBehaviour
                 if (db) Debug.Log("B Tap Cancel");
             }
         };
-
-
-
     }
 
     public void ClearAllEvents(){

@@ -1,36 +1,92 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FeedGameManager : MicroGameManager
 {
+    private bool feedingLeft = false;
+    private bool feedingRight = false;
+
+    private bool isGameOver = false;
+    private bool isGameWon = false;
+    [Header("Initial Timer Value")]
+    [SerializeField] private float timer;
+
+    [Header("Red Guy")]
+    [SerializeField] private GameObject redGuy;
+    [Header("Blue Guy")]
+    [SerializeField] private GameObject blueGuy;
+
+    [Header("TimerUI")]
+    [SerializeField] private Text timerTextUI;
+
+    [Header("GameManager")]
+    [SerializeField] private GameObject gameManagerObj;
+
     public override void Initialize(InputManager im)
     {
-        throw new System.NotImplementedException();
+        inputManager = im;
+        BindInput();
+
+        // load the scene
+        LoadScene();
     }
 
     public override void LoadScene()
     {
-        throw new System.NotImplementedException();
+        // load scene
     }
 
     public override void UnloadScene()
     {
-        throw new System.NotImplementedException();
+        // unload scene
     }
 
     protected override void BindInput()
     {
-        throw new System.NotImplementedException();
+        inputManager.OnAPressed.AddListener(FeedLeft);
+        inputManager.OnBPressed.AddListener(FeedRight);
+
+        inputManager.OnAHoldReleased.AddListener(FeedLeftReset);
+        inputManager.OnBHoldReleased.AddListener(FeedRightReset);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
+    }
+
+    public void FeedLeft()
+    {
+        feedingLeft = true;
+    }
+
+    public void FeedRight()
+    {
+        feedingRight = true;
+    }
+
+    public void FeedLeftReset()
+    {
+        feedingLeft = false;
+    }
+
+    public void FeedRightReset()
+    {
+        feedingRight = false;
+    }
+
+    public void UpdateTimer()
+    {
+        if (!isGameWon)
+        {
+            timer -= Time.deltaTime;
+        }
+
+
     }
 }

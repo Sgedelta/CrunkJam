@@ -17,16 +17,34 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (movingRight)
+        {
+            this.transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
+        }
 
+        if (movingUp)
+        {
+            this.transform.position += (Vector3)Vector2.up * moveSpeed * Time.deltaTime;
+        }
     }
 
     public void MoveRight()
     {
-        this.transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
+        movingRight = true;
     }
 
     public void MoveUp()
     {
-        this.transform.position += (Vector3)Vector2.up * moveSpeed * Time.deltaTime;
+        movingUp = true;
+    }
+
+    public void MoveRightReset()
+    {
+        movingRight = false;
+    }
+
+    public void MoveUpReset()
+    {
+        movingUp = false;
     }
 }
