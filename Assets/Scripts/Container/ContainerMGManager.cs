@@ -41,6 +41,8 @@ public class ContainerMGManager : MicroGameManager
     {
         inputManager.OnAPressed.AddListener(ReleaseLeftAlien);
         inputManager.OnBPressed.AddListener(ReleaseRightAlien);
+        inputManager.OnAHoldReleased.AddListener(ReleaseLeftAlien);
+        inputManager.OnBHoldReleased.AddListener(ReleaseRightAlien);
     }
 
     private void Start()
