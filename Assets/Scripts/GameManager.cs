@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
         {
             DEBUGForceMicroManager.Initialize(inputManager, difficulty);
         }
-
     }
 
     /// <summary>
