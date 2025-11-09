@@ -16,14 +16,5 @@ public class CatchItem : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            manager.AddScore(isGood ? 1 : -1);
-            Destroy(gameObject);
-        }
-    }
 }
 
