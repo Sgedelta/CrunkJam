@@ -3,6 +3,8 @@ using UnityEngine;
 public class Dont : MicroGameManager
 {
     [SerializeField] private float countdown = 10;
+
+    bool ended = false;
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -16,7 +18,11 @@ public class Dont : MicroGameManager
         countdown -= Time.deltaTime;
         if (countdown <= 0)
         {
-            GameManager.Instance.EndMicrogame(true);
+            if (!ended)
+            {
+                GameManager.Instance.EndMicrogame(true);
+                ended = true;
+            }
         }
     }
     public override void LoadScene()
@@ -81,7 +87,11 @@ public class Dont : MicroGameManager
     public void Lose()
     {
         Debug.Log("You had one fucking job)");
-        GameManager.Instance.EndMicrogame(false);
+        if (!ended)
+        {
+            GameManager.Instance.EndMicrogame(false);
+            ended = true;
+        }
     }
 
 

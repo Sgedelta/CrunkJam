@@ -44,6 +44,8 @@ public class FeedGameManager : MicroGameManager
     // How fast the food moves across the screen
     private int moveSpeed = 10;
 
+    bool ended = false;
+
     // Keeps track of how many times the player made the correct choice in feeding aliens
     public int count;
 
@@ -214,9 +216,15 @@ public class FeedGameManager : MicroGameManager
     /// </summary>
     public void GameWon()
     {
+        if(ended)
+        {
+            return;
+        }
+
         isGameWon = true;
         gameManagerScript.EndMicrogame(true);
         Debug.Log("Game Won");
+        ended = true;
     }
 
     /// <summary>
@@ -224,9 +232,14 @@ public class FeedGameManager : MicroGameManager
     /// </summary>
     public void GameOver()
     {
+        if(ended)
+        {
+            return;
+        }
         isGameOver = true;
         gameManagerScript.EndMicrogame(false);
         Debug.Log("Game Lost");
+        ended = true;
     }
 
     /// <summary>

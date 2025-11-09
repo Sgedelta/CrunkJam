@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 485913643}
   - component: {fileID: 485913642}
   - component: {fileID: 485913641}
+  - component: {fileID: 485913644}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -252,6 +253,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485913639}
   m_CullTransparentMesh: 1
+--- !u!95 &485913644
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485913639}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 81ecffa4c8ceb0f4eacc29a00e404626, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &605882772
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,8 +755,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
       propertyPath: DEBUGForceGameLoad
-      value: GlassGame
+      value: CountGame
       objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: minigames.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: 'minigames.Array.data[7]'
+      value: StompLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: 'minigames.Array.data[8]'
+      value: WalkGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: gameLInstructions.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: gameRInstructions.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: 'gameLInstructions.Array.data[7]'
+      value: 
+      objectReference: {fileID: 21300000, guid: c76797b41a5465347882c80c3d022cc8, type: 3}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: 'gameLInstructions.Array.data[8]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 79ab79db8b3a2044b94ccdde052e5298, type: 3}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: 'gameRInstructions.Array.data[7]'
+      value: 
+      objectReference: {fileID: 21300000, guid: fcb40d854b879cd43bdc421a29a2ffca, type: 3}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: 'gameRInstructions.Array.data[8]'
+      value: 
+      objectReference: {fileID: 21300000, guid: f92a8e9e8062aee499e497654849445a, type: 3}
     - target: {fileID: 8372299493319570796, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
       propertyPath: initializationDelay
       value: 3

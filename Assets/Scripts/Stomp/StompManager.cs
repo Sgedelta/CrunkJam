@@ -12,6 +12,9 @@ public class StompManager : MicroGameManager
     [SerializeField] private float cooldown = 0;
 
     [SerializeField] private Spawner spawner;
+
+    bool ended = false;
+
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -25,7 +28,11 @@ public class StompManager : MicroGameManager
         endGameCountdown -= Time.deltaTime;
         if (endGameCountdown <= 0)
         {
-            GameManager.Instance.EndMicrogame(true);
+            if (!ended)
+            {
+                GameManager.Instance.EndMicrogame(true);
+                ended = true;
+            }
         }
 
         if (cooldown <= 0 && endGameCountdown > 5)
@@ -103,7 +110,12 @@ public class StompManager : MicroGameManager
     public void Lose()
     {
         Debug.Log("You had one fucking job)");
-        GameManager.Instance.EndMicrogame(false);
+        if (!ended)
+        {
+            GameManager.Instance.EndMicrogame(false);
+            ended = true;
+        }
+
     }
 
     public void Stomp()
@@ -115,7 +127,12 @@ public class StompManager : MicroGameManager
     {
         if (collision.gameObject.GetComponent<Aliens>().squish)
         {
-            GameManager.Instance.EndMicrogame(false);
+            if (!ended)
+            {
+                GameManager.Instance.EndMicrogame(false);
+                ended = true;
+            }
+
         }
     }
 

@@ -1,7 +1,4 @@
 using System;
-using System.Net.Sockets;
-using Unity.VisualScripting;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -141,7 +138,9 @@ public class CountMGManager: MicroGameManager
     }
     private void SpawnLilGuys()
     {
-        guyNumToSpawn = (int)UnityEngine.Random.Range(0, (15 * GameManager.Instance.Difficulty));
+        Debug.Log(GameManager.Instance);
+
+        guyNumToSpawn = (int)UnityEngine.Random.Range(0, (15 * Mathf.Max(GameManager.Instance.Difficulty, 1)));
         lilGuysArray = new GameObject[guyNumToSpawn];
 
         for (int i = 0; i < guyNumToSpawn; i++)

@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -130,14 +129,15 @@ public class GameManager : MonoBehaviour
                 // Potential TODO: if score is greater than the lowest of the 3 recorded high scores, overwrite it to the proper place
                 // SceneManager.LoadScene("EndScene");
                 Debug.Log("Game Run End\nScore: " + minigamesCompleted);
-
-
-                return;
             }
         }
         else
         {
             minigamesCompleted++;
+            if(minigamesCompleted % 5 == 0)
+            {
+                difficulty++;
+            }
         }
 
         StartCoroutine(RunDoorAnimationAndNextGameCoroutine(health > 0));

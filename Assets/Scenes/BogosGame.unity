@@ -246,9 +246,6 @@ MonoBehaviour:
   bogoRightPos: {x: 0.6, y: -0.3}
   bogoRotation: {x: 0, y: 0, z: 22}
   binted: {fileID: -1789724853762351473, guid: 3b79a9a97181a6b4f9d4ae4f16aa75e6, type: 3}
-  shakesGoal: 5
-  gameOverTimer: 20
-  difficultyCoeff: 0
 --- !u!212 &861512133
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -520,6 +517,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6998657878364198826, guid: b24074df6ebcd4748881b9ab23772b6d, type: 3}
+      propertyPath: DEBUGForceMicroManager
+      value: 
+      objectReference: {fileID: 861512132}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

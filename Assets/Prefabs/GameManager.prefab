@@ -177,7 +177,7 @@ MonoBehaviour:
   OnBothHoldReleased:
     m_PersistentCalls:
       m_Calls: []
-  bothInputDelayTime: 0.1
+  bothInputDelayTime: 0.05
 --- !u!114 &8372299493319570796
 MonoBehaviour:
   m_ObjectHideFlags: 0
