@@ -31,12 +31,6 @@ public class ExampleMicroManager : MicroGameManager
         //load the scene
         LoadScene();
     }
-
-    private void Update()
-    {
-        Move(moveDir);
-    }
-
     public override void LoadScene()
     {
         //set up the scene to play
