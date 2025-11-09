@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cda3b9e4de3a21d48b98b5c23a9ff11e
+guid: 53b85ab0d82297a4b8824a70f7d372d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2722390091363369761
-    second: ClawAlien2_0
+      213: -8539506697098216124
+    second: ClawCrawfish2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ClawAlien2_0
+      name: ClawCrawfish2_0
       rect:
         serializedVersion: 2
-        x: 499
-        y: 402
-        width: 790
-        height: 580
+        x: 1
+        y: 45
+        width: 455
+        height: 1035
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdc3e30c2a0283ad0800000000000000
-      internalID: -2722390091363369761
+      spriteID: 44d346a37e39d7980800000000000000
+      internalID: -8539506697098216124
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ClawAlien2_0: -2722390091363369761
+      ClawCrawfish2_0: -8539506697098216124
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

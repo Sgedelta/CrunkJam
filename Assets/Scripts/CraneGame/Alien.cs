@@ -18,6 +18,12 @@ public class Alien : MonoBehaviour
     [Header("Crane Game Manager")]
     [SerializeField] private CraneGameManager craneGameManager;
 
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Sprite anim1;
+    [SerializeField] private Sprite anim2;
+    private bool spriteSwap;
+    private float animCooldown;
+
     private int dir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +53,19 @@ public class Alien : MonoBehaviour
                 dir = 0;
             }
         }
+
+        if(animCooldown <= 0)
+        {
+            if (spriteSwap)
+                sr.sprite = anim1;
+            else sr.sprite = anim2;
+
+            spriteSwap = !spriteSwap;
+
+            animCooldown += 2;
+        }
+
+        animCooldown -= Time.deltaTime;
     }
 
     public void Move()

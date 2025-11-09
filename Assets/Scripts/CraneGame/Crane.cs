@@ -8,6 +8,12 @@ public class Crane : MonoBehaviour
     private bool movingRight = false;
     private bool movingLeft = false;
 
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Sprite anim1;
+    [SerializeField] private Sprite anim2;
+    private bool spriteSwap;
+    private float animCooldown;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +31,19 @@ public class Crane : MonoBehaviour
         {
             this.transform.position += (Vector3)Vector2.right * moveSpeed * Time.deltaTime;
         }
+
+        if (animCooldown <= 0)
+        {
+            if (spriteSwap)
+                sr.sprite = anim1;
+            else sr.sprite = anim2;
+
+            spriteSwap = !spriteSwap;
+
+            animCooldown++;
+        }
+
+        animCooldown -= Time.deltaTime;
     }
 
     public void MoveRight()

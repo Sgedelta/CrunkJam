@@ -62,10 +62,8 @@ public class CraneGameManager : MicroGameManager
         }
 
         // grab reference to Game Manager script
-        if (gameManagerObj)
-        {
-            gameManagerScript = gameManagerObj.GetComponent<GameManager>();
-        }
+        gameManagerScript = GameManager.Instance;
+        
 
         // get min and max of the screen from camera viewport
         screenMin = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
