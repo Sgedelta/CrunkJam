@@ -31,14 +31,13 @@ public class ExampleMicroManager : MicroGameManager
         //load the scene
         LoadScene();
     }
-<<<<<<< HEAD
-=======
+
 
     private void Update()
     {
-        
+        Move(moveDir);
     }
->>>>>>> 8c2da71 (Fixed merge issues)
+
     public override void LoadScene()
     {
         //set up the scene to play
