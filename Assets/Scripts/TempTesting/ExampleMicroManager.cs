@@ -23,9 +23,10 @@ public class ExampleMicroManager : MicroGameManager
         //these two steps should always be done
         inputManager = im;
         BindInput(); //this has to be made later
-    
-        //initialize any variables you would normally do in Start here
 
+        //initialize any variables you would normally do in Start here
+        //such as - difficulty!
+        moveSpeed *= Mathf.Max(GameManager.Instance.Difficulty, 1);
 
         //load the scene
         LoadScene();
@@ -49,28 +50,49 @@ public class ExampleMicroManager : MicroGameManager
 
     protected override void BindInput()
     {
-        inputManager.OnAPressed.AddListener(RotateCounterClockwise);
-        inputManager.OnBPressed.AddListener(RotateClockwise);
+        inputManager.OnAPressed.AddListener(() => {
+            RotateCounterClockwise();
+            Debug.Log("A Pressed Listener");
+            });
+        inputManager.OnBPressed.AddListener(() => {
+            RotateClockwise();
+            Debug.Log("B Pressed Listener");
+        });
 
-        inputManager.OnAHeld.AddListener(MoveNeg);
-        inputManager.OnBHeld.AddListener(MovePos);
+        inputManager.OnAHeld.AddListener(() => {
+            MoveNeg();
+            Debug.Log("A Held Listener");
+        });
+        inputManager.OnBHeld.AddListener(() => {
+            MovePos();
+            Debug.Log("B Held Listener");
+        });
 
-        inputManager.OnAHoldReleased.AddListener(MoveReset);
-        inputManager.OnBHoldReleased.AddListener(MoveReset);
+        inputManager.OnAHoldReleased.AddListener(() => {
+            MoveReset();
+            Debug.Log("A Released Listener");
+        });
+        inputManager.OnBHoldReleased.AddListener(() => {
+            MoveReset();
+            Debug.Log("B Released Listener");
+        });
 
         inputManager.OnBothPressed.AddListener(() =>
         {
-            Debug.Log("Both Pressed");
+            Debug.Log("Both Pressed Listener");
+            
         });
 
         inputManager.OnBothHeld.AddListener(() =>
         {
-            Debug.Log("Both Held");
+            Debug.Log("Both Held Listener");
+            MoveReset();
         });
 
         inputManager.OnBothHoldReleased.AddListener(() =>
         {
-            Debug.Log("Both Released");
+            Debug.Log("Both Released Listener");
+            MoveReset();
         });
     }
 
@@ -115,7 +137,4 @@ public class ExampleMicroManager : MicroGameManager
     {
         Rotate(-rotationAmnt);
     }
-
-
-
 }
