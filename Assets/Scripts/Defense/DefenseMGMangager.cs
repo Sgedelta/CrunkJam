@@ -50,8 +50,8 @@ public class DefenseMGMangager : MicroGameManager
 
     protected override void BindInput()
     {
-        inputManager.OnAPressed.AddListener(MoveUp);
-        inputManager.OnBPressed.AddListener(MoveDown);
+        inputManager.OnAHeld.AddListener(MoveUp);
+        inputManager.OnBHeld.AddListener(MoveDown);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
