@@ -23,6 +23,12 @@ public class RunMGManager : MicroGameManager
     private float timer = 0;
     public float difficultyCoeff = 1f;
 
+    private float winTimer = 0;
+    [SerializeField] private float winTime = 10;
+
+    bool ended = false;
+
+    [SerializeField] Animator anim;
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -54,18 +60,29 @@ public class RunMGManager : MicroGameManager
     }
     private void Update()
     {
+        winTimer += Time.deltaTime;
         timer += Time.deltaTime;
         if (timer > obstacleInterval)
         {
             SpawnObstacle();
             timer = 0;
         }
+        if (winTimer > winTime)
+        {
+            if(!ended) GameManager.Instance.EndMicrogame(true);
+            ended = true;
+        }
+
+
+        anim.SetBool("Crouching", runner.transform.localScale.y == crouchHeight.y);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.tag == "Obstacle")
         {
             //game fail
+            if (!ended) GameManager.Instance.EndMicrogame(false);
+            ended = true;
             Debug.Log("u sux");
         }
         if(collision.collider.tag == "Laser")
