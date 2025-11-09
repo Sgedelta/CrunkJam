@@ -13,7 +13,7 @@ public class ContainerMGManager : MicroGameManager
     [SerializeField] private GameObject rightAlien;
 
     private int collectedAliens = 0;
-    public override void Initialize(InputManager im, int difficulty)
+    public override void Initialize(InputManager im)
     {
         //these two steps should always be done
         inputManager = im;
@@ -47,7 +47,7 @@ public class ContainerMGManager : MicroGameManager
 
     private void Start()
     {
-        bucket.GetComponent<Rigidbody2D>().linearVelocityX = moveSpeed * difficultyCoeff;
+        bucket.GetComponent<Rigidbody2D>().linearVelocityX = moveSpeed * GameManager.Instance.Difficulty;
     }
 
     private void Update()

@@ -8,13 +8,28 @@ public class ExampleMicroManager : MicroGameManager
     // primarily made to provide an example and test input methods
     // you would put the rules for the game here, easily readable by everyone!
 
-    [SerializeField] private float countdown = 10;
-    public override void Initialize(InputManager im, int difficulty)
+    //Needed Vars
+    [SerializeField] private float moveSpeed = 3;
+    [SerializeField] private float rotationAmnt = 30;
+    [SerializeField] private GameObject player;
+
+    private Vector2 dir = Vector2.right;
+    private float dirAngle = 0;
+
+    private int moveDir = 0;
+
+    public override void Initialize(InputManager im)
     {
         //these two steps should always be done
         inputManager = im;
         BindInput(); //this has to be made later
 
+        //initialize any variables you would normally do in Start here
+        //such as - difficulty!
+        moveSpeed *= Mathf.Max(GameManager.Instance.Difficulty, 1);
+
+        //load the scene
+        LoadScene();
     }
 
     private void Update()
@@ -89,7 +104,4 @@ public class ExampleMicroManager : MicroGameManager
         Debug.Log("You had one fucking job)");
         GameManager.Instance.EndMicrogame(false);
     }
-
-
-
 }

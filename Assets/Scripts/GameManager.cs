@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     [SerializeField] private bool debug = false; //a general debug state for the project, set in editor
-    public bool DEBUG {  get { return debug; } }
+    public bool DEBUG { get { return debug; } }
 
 
     [SerializeField] private MicroGameManager DEBUGForceMicroManager; //if filled && DEBUG, will start the micro game manager on start, for testing
@@ -22,7 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public InputActionReference inputA;
     [SerializeField] public InputActionReference inputB;
 
-    private int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
+    [SerializeField] private GameObject DoorAnimationPrefab;
+    private GameObject DoorAnimationParent;
+
+    private int minigamesCompleted = 0;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
+
+    public int MinigamesCompleted { get { return minigamesCompleted; } }
     private int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
     public int Difficulty // properties primarily so that we can call proper animation/display methods when we change these things later - Sam
     {
@@ -38,6 +45,12 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] List<string> minigames;  // List of every potential minigame, the saved strings are the names of their scenes to be loaded
+    [SerializeField] List<Sprite> gameLInstructions;
+    [SerializeField] List<Sprite> gameRInstructions;
+    [SerializeField] List<Sprite> numberSprites;
+
+    Dictionary<string, Tuple<Sprite, Sprite>> minigameInstructionDict = new Dictionary<string, Tuple<Sprite, Sprite>>();
+    
     List<string> grabBag;    // The list of minigames, sorted at random per game, to be played in that order so that the player sees all minigames before true random
 
     private void Awake()
@@ -72,9 +85,23 @@ public class GameManager : MonoBehaviour
 
         if (DEBUG && DEBUGForceMicroManager != null)
         {
-            DEBUGForceMicroManager.Initialize(inputManager, difficulty);
+            DEBUGForceMicroManager.Initialize(inputManager);
         }
 
+        //build dictionary so we can display instructions properly
+        for (int i = 0; i < minigames.Count; i++)
+        {
+            Tuple<Sprite, Sprite> spriteTuple;
+            if(i > gameLInstructions.Count || i > gameRInstructions.Count)
+            {
+                Debug.LogError("more minigames than instructions!! Something's wrong!!!!");
+                break;
+            }
+
+            spriteTuple = new Tuple<Sprite, Sprite>(gameLInstructions[i], gameRInstructions[i]);
+
+            minigameInstructionDict.Add(minigames[i], spriteTuple);
+        }
     }
 
     /// <summary>
@@ -100,7 +127,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
                 EditorApplication.ExitPlaymode();
 #endif
-                
+
                 return;
             }
         }
@@ -109,14 +136,49 @@ public class GameManager : MonoBehaviour
             minigamesCompleted++;
         }
 
-        //TODO: implement transition scene here (or in relevant GameSwitcher method)
-        LoadNewMicrogame();
+        StartCoroutine(RunDoorAnimationAndNextGameCoroutine(health <= 0));
     }
+
+    private IEnumerator RunDoorAnimationAndNextGameCoroutine(bool alive)
+    {
+        //create door animator and parent to GameManager (so it doesn't get destroyed as the game goes on)
+        DoorAnimationParent = Instantiate(DoorAnimationPrefab, transform);
+
+        //wait for door animation to go through....
+        yield return new WaitForSeconds(2f);
+
+        if(alive)
+        {
+            //load a game
+            string loadedGame = LoadNewMicrogame();
+
+            //set the door sprites
+            DoorAnimationParent.GetComponent<DoorDisplayControl>()
+                .SetSprites(numberSprites[minigamesCompleted], minigameInstructionDict[loadedGame]);
+
+        } 
+        else
+        {
+
+        }
+
+        //wait for door animation to complete
+        yield return new WaitForSeconds(5f); //bit of buffer time here.
+
+
+        //destroy door animator after it's done animating (cleanup)
+        Destroy(DoorAnimationParent);
+
+        yield return null;
+
+
+    }
+
 
     /// <summary>
     /// Loads a random microgame from the bag if there are any in there, or a random one otherwise
     /// </summary>
-    public void LoadNewMicrogame() 
+    public string LoadNewMicrogame() 
     {
         string chosenGame = "";
         // Regardless of if the last game was won or lost, so long as the player has health left (if they didn't this wouldn't run),
@@ -128,16 +190,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(minigames[Random.Range(0, minigames.Count)]);
+            SceneManager.LoadScene(minigames[UnityEngine.Random.Range(0, minigames.Count)]);
         }
 
-        if(DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
+        if (DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
         {
             chosenGame = DEBUGForceGameLoad;
         }
 
         //TODO: implement transition scene here (or in GameSwitcher)
         gameSwitcher.LoadMicrogame(chosenGame);
+        return chosenGame;
     }
 
     /// <summary>
@@ -146,7 +209,7 @@ public class GameManager : MonoBehaviour
     /// <param name="mm"></param>
     public void IntializeManager(MicroGameManager mm)
     {
-        mm.Initialize(inputManager, difficulty);
+        mm.Initialize(inputManager);
     }
 
     // To call before any new run starts
@@ -164,7 +227,7 @@ public class GameManager : MonoBehaviour
         {
             // Take a random name from minigames that has not yet been selected,
             // assign it to the current grabBag position, then remove it from the pool
-            name = minigamesCopy[Random.Range(0, minigames.Count)];
+            name = minigamesCopy[UnityEngine.Random.Range(0, minigames.Count)];
             grabBag.Add(name);
             minigamesCopy.Remove(name);
         }

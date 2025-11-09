@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/InputTesting.unity
     guid: fa523db975c320d4c82d114fa2d843e6
   - enabled: 1
-    path: Assets/Scenes/ContainerLevel.unity
+    path: Assets/Scenes/ContainerGame.unity
     guid: cde935a881813be4784278a44c266454
   - enabled: 1
-    path: Assets/Scenes/DefenseLevel.unity
+    path: Assets/Scenes/DefenseGame.unity
     guid: 356c3f9bc3499104089323e4a348181a
   - enabled: 1
     path: Assets/Scenes/RunLevel.unity
