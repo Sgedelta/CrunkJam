@@ -50,14 +50,32 @@ public class ExampleMicroManager : MicroGameManager
 
     protected override void BindInput()
     {
-        inputManager.OnAPressed.AddListener(RotateCounterClockwise);
-        inputManager.OnBPressed.AddListener(RotateClockwise);
+        inputManager.OnAPressed.AddListener(() => {
+            RotateCounterClockwise();
+            Debug.Log("A Pressed Listener");
+            });
+        inputManager.OnBPressed.AddListener(() => {
+            RotateClockwise();
+            Debug.Log("B Pressed Listener");
+        });
 
-        inputManager.OnAHeld.AddListener(MoveNeg);
-        inputManager.OnBHeld.AddListener(MovePos);
+        inputManager.OnAHeld.AddListener(() => {
+            MoveNeg();
+            Debug.Log("A Held Listener");
+        });
+        inputManager.OnBHeld.AddListener(() => {
+            MovePos();
+            Debug.Log("B Held Listener");
+        });
 
-        inputManager.OnAHoldReleased.AddListener(MoveReset);
-        inputManager.OnBHoldReleased.AddListener(MoveReset);
+        inputManager.OnAHoldReleased.AddListener(() => {
+            MoveReset();
+            Debug.Log("A Released Listener");
+        });
+        inputManager.OnBHoldReleased.AddListener(() => {
+            MoveReset();
+            Debug.Log("B Released Listener");
+        });
 
         inputManager.OnBothPressed.AddListener(() =>
         {
