@@ -44,9 +44,16 @@ public class SFX : MonoBehaviour
     [Header("Catch Game")]
     [SerializeField] public AudioClip catchBasket;
     [SerializeField] public AudioClip catchGround;
-    
+
+
+    [Header("Overall")]
+    [SerializeField] public AudioClip BGMusic200;
+    [SerializeField] public AudioClip Loss200;
+
+    [Header("Other")]
     public float volume;
     private AudioSource audioSource;
+    private AudioSource BGAudioSource;
 
     private void Start()
     {
@@ -54,6 +61,10 @@ public class SFX : MonoBehaviour
         if (audioSource == null){
             audioSource = gameObject.AddComponent<AudioSource>();
         }   
+        if (BGAudioSource == null)
+        {
+            BGAudioSource = gameObject.AddComponent<AudioSource>();
+        }
         volume = PlayerPrefs.GetFloat("MasterVolume", 1f);
     }
 
@@ -67,6 +78,18 @@ public class SFX : MonoBehaviour
         audioSource.PlayOneShot(source, volume);
     }
 
+
+    public void BackgroundMusic()
+    {
+        BGAudioSource.clip = BGMusic200;
+        BGAudioSource.Play();
+        BGAudioSource.loop = true;
+    }
+    public void gameLoss()
+    {
+        BGAudioSource.Stop();
+        BGAudioSource.PlayOneShot(Loss200);
+    }
 
 }
 
