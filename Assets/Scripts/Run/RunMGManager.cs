@@ -18,6 +18,7 @@ public class RunMGManager : MicroGameManager
     [SerializeField] private GameObject crouchObstacle;
     [SerializeField] private GameObject jumpObstacle;
     [SerializeField] private float obstacleInterval = 1;
+    private bool isGrounded = true;
 
     private float timer = 0;
     public float difficultyCoeff = 1f;
@@ -27,7 +28,7 @@ public class RunMGManager : MicroGameManager
         //these two steps should always be done
         inputManager = im;
         BindInput(); //this has to be made later
-    
+
         //initialize any variables you would normally do in Start here
         SpawnObstacle();
 
@@ -60,20 +61,40 @@ public class RunMGManager : MicroGameManager
             timer = 0;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.tag == "Obstacle")
+        {
+            //game fail
+            Debug.Log("u sux");
+        }
+        if(collision.collider.tag == "Laser")
+        {
+            isGrounded = true;
+        }
+    }
     public void Jump()
     {
-        runner.GetComponent<Rigidbody2D>().AddForceY(jumpForce, ForceMode2D.Impulse);
+        if (isGrounded)
+        {
+            runner.GetComponent<Rigidbody2D>().AddForceY(jumpForce, ForceMode2D.Impulse);
+            isGrounded = false;
+        }
     }
-
     public void Duck()
     {
         runner.transform.localScale = crouchHeight;
         runner.GetComponent<Rigidbody2D>().AddForceY(-4f, ForceMode2D.Impulse);
     }
+    public void Stand()
+    {
+        runner.transform.localScale = standHeight;
+        runner.GetComponent<Rigidbody2D>().AddForceY(1f, ForceMode2D.Impulse);
+    }
 
     private void SpawnObstacle()
     {
-        if(Random.Range(0f,1f) > 0.5f)
+        if (Random.Range(0f, 1f) > 0.5f)
         {
             //spawn crouch
             GameObject newCO = GameObject.Instantiate(crouchObstacle, crouchSpawnPoint, Quaternion.identity);
