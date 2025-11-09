@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(minigames[Random.Range(0, minigames.Count)]);
+            SceneManager.LoadScene(minigames[UnityEngine.Random.Range(0, minigames.Count)]);
         }
 
         if (DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
         {
             // Take a random name from minigames that has not yet been selected,
             // assign it to the current grabBag position, then remove it from the pool
-            name = minigamesCopy[Random.Range(0, minigames.Count)];
+            name = minigamesCopy[UnityEngine.Random.Range(0, minigames.Count)];
             grabBag.Add(name);
             minigamesCopy.Remove(name);
         }
