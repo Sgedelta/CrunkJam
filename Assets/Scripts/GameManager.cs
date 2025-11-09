@@ -2,6 +2,8 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,8 +19,8 @@ public class GameManager : MonoBehaviour
     private InputManager inputManager;
     private GameSwitcher gameSwitcher;
 
-    public KeyCode inputA = KeyCode.Alpha1;
-    public KeyCode inputB = KeyCode.Alpha5;
+    [SerializeField] public InputActionReference inputA;
+    [SerializeField] public InputActionReference inputB;
 
     private int minigamesCompleted;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
     private int difficulty;   // difficulty that player is at, dependent on the minigames completed. This can change the games' obstacles, timer, etc.
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
         set { difficulty = value; }
     }
 
-    private int health = 3;              // each game failed removes 1 from health. //default 3 for testing
+    private int health = 3; // each game failed removes 1 from health. //default 3 for testing
     public int Health // properties primarily so that we can call proper animation/display methods when we change these things later - Sam
     {
         get { return health; }
@@ -60,18 +62,6 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // input keys are 1 and 5 respectively, by default
-        if(inputA == KeyCode.None)
-        {
-            inputA = KeyCode.Alpha1;
-
-        }
-
-        if(inputB == KeyCode.None)
-        {
-            inputB = KeyCode.Alpha5;
-
-        }
 
         grabBag = new List<string>();
 
@@ -82,15 +72,9 @@ public class GameManager : MonoBehaviour
 
         if (DEBUG && DEBUGForceMicroManager != null)
         {
-            DEBUGForceMicroManager.Initialize(inputManager);
+            DEBUGForceMicroManager.Initialize(inputManager, difficulty);
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /// <summary>
@@ -112,6 +96,11 @@ public class GameManager : MonoBehaviour
                 // Potential TODO: if score is greater than the lowest of the 3 recorded high scores, overwrite it to the proper place
                 // SceneManager.LoadScene("EndScene");
                 Debug.Log("Game Run End\nScore: " + minigamesCompleted);
+
+#if UNITY_EDITOR
+                EditorApplication.ExitPlaymode();
+#endif
+                
                 return;
             }
         }
@@ -121,6 +110,7 @@ public class GameManager : MonoBehaviour
         }
 
         //TODO: implement transition scene here (or in relevant GameSwitcher method)
+        LoadNewMicrogame();
     }
 
     /// <summary>
@@ -156,7 +146,7 @@ public class GameManager : MonoBehaviour
     /// <param name="mm"></param>
     public void IntializeManager(MicroGameManager mm)
     {
-        mm.Initialize(inputManager);
+        mm.Initialize(inputManager, difficulty);
     }
 
     // To call before any new run starts

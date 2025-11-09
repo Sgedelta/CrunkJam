@@ -26,6 +26,11 @@ public class ExampleMicroManager : MicroGameManager
         }
     }
 
+    private void Update()
+    {
+        Move(moveDir);
+    }
+
     public override void LoadScene()
     {
         //Don't do nutin
