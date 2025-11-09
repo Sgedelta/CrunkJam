@@ -176,9 +176,6 @@ public class InputManager : MonoBehaviour
                 bState = InputStates.None;
             }
         };
-
-
-
     }
 
     public void ClearAllEvents(){
