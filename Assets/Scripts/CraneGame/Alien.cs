@@ -12,9 +12,6 @@ public class Alien : MonoBehaviour
     [SerializeField] private float randomThreshold = 2;
     [SerializeField] private float resetThreshold = 3;
 
-    [Header("Game Manager")]
-    [SerializeField] private GameManager gameManager;
-
     [Header("Crane Game Manager")]
     [SerializeField] private CraneGameManager craneGameManager;
 
@@ -113,7 +110,7 @@ public class Alien : MonoBehaviour
         {
             Debug.Log("You win!");
             craneGameManager.isGameWon = true;
-            gameManager.EndMicrogame(true);
+            GameManager.Instance.EndMicrogame(true);
         }
     }
  }
