@@ -52,22 +52,24 @@ public class ContainerMGManager : MicroGameManager
     {
         if (bucket.transform.position.x > 7 && velocityPositive)
         {
+            bucket.transform.position = new Vector2(7f, bucket.transform.position.y);
             ReverseDirection();
         }
         else if (bucket.transform.position.x < -7 && !velocityPositive)
         {
+            bucket.transform.position = new Vector2(-7f, bucket.transform.position.y);
             ReverseDirection();
         }
 
         if (leftAlien.transform.position.y < -5 || rightAlien.transform.position.y < -5)
         {
             Debug.Log("womp womp");
-            //GameManager.Instance.LoadNewMicrogame(false);
+            GameManager.Instance.EndMicrogame(false);
         }
         if (collectedAliens == 2)
         {
             Debug.Log("yippee! you win!");
-            //GameManager.Instance.LoadNewMicrogame(true);
+            GameManager.Instance.EndMicrogame(true);
         }
     }
 
@@ -78,13 +80,13 @@ public class ContainerMGManager : MicroGameManager
         {
             collectedAliens++;
             collision.gameObject.SetActive(false);
-            bucket.GetComponent<Rigidbody2D>().linearVelocityX = moveSpeed * difficultyCoeff;
         }
     }
     public void ReverseDirection()
     {
         bucket.GetComponent<Rigidbody2D>().linearVelocityX *= -1;
         velocityPositive = !velocityPositive;
+
     }
     /// <summary>
     /// Turns gravity on for the left alien

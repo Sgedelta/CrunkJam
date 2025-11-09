@@ -21,8 +21,8 @@ public class DefenseMGMangager : MicroGameManager
     [SerializeField] private GameObject laser;
     private List<GameObject> lasersList = new List<GameObject>();
 
-    public float difficultyCoeff = 1;
-
+    float winTime = 5;
+    float totalTime = 0;
 
     public override void Initialize(InputManager im, int difficulty)
     {
@@ -32,7 +32,7 @@ public class DefenseMGMangager : MicroGameManager
         BindInput(); //this has to be made later
 
         //initialize any variables you would normally do in Start here
-
+        shootInterval = (shootInterval + difficulty) / Mathf.Max(difficulty, 1);
 
         //load the scene
         LoadScene();
@@ -63,7 +63,8 @@ public class DefenseMGMangager : MicroGameManager
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime * difficultyCoeff;
+        timer += Time.deltaTime;
+        totalTime += Time.deltaTime;
         if (timer > shootInterval)
         {
             MoveEvilGuy();
@@ -80,10 +81,15 @@ public class DefenseMGMangager : MicroGameManager
                     lasersList.Remove(a);
                     GameObject.Destroy(a);
                     //If the player fails to protect a laser from reaching the screen)
-                    //GameManager.Instance.LoadNewMicrogame(false);
+                    GameManager.Instance.EndMicrogame(false);
                     Debug.Log("Lmao bad");
                 }
             }
+        }
+
+        if (totalTime > winTime)
+        {
+            GameManager.Instance.EndMicrogame(true);
         }
     }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -95,6 +96,11 @@ public class GameManager : MonoBehaviour
                 // Potential TODO: if score is greater than the lowest of the 3 recorded high scores, overwrite it to the proper place
                 // SceneManager.LoadScene("EndScene");
                 Debug.Log("Game Run End\nScore: " + minigamesCompleted);
+
+#if UNITY_EDITOR
+                EditorApplication.ExitPlaymode();
+#endif
+                
                 return;
             }
         }
@@ -104,6 +110,7 @@ public class GameManager : MonoBehaviour
         }
 
         //TODO: implement transition scene here (or in relevant GameSwitcher method)
+        LoadNewMicrogame();
     }
 
     /// <summary>

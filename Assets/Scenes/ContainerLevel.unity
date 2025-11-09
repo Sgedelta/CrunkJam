@@ -221,7 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b839e9d320f294479c4942c81890628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 5
+  difficultyCoeff: 1
   bucket: {fileID: 41990953}
   leftAlien: {fileID: 336276283}
   rightAlien: {fileID: 1756927407}
