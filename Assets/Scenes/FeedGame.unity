@@ -409,7 +409,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.01, y: 0.01}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!50 &654713658
 Rigidbody2D:
@@ -675,7 +675,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f2c6b14ce4b08bb41b93ca316e8e41cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 59b48b11e28ab0e49ba7828205beff35, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -687,7 +687,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Time
+  m_Text: 'Time:'
 --- !u!222 &693654038
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1776,7 +1776,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.01, y: 0.01}
+  m_Size: {x: 1, y: 1.4}
   m_EdgeRadius: 0
 --- !u!50 &1982649297
 Rigidbody2D:

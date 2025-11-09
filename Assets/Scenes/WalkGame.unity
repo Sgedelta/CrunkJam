@@ -347,7 +347,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: f2c6b14ce4b08bb41b93ca316e8e41cb, type: 3}
+    m_Font: {fileID: 12800000, guid: 59b48b11e28ab0e49ba7828205beff35, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Timer
+  m_Text: 'Time: '
 --- !u!222 &688927404
 CanvasRenderer:
   m_ObjectHideFlags: 0
