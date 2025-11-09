@@ -13,6 +13,8 @@ public class ContainerMGManager : MicroGameManager
     [SerializeField] private GameObject rightAlien;
 
     private int collectedAliens = 0;
+
+    bool ended = false;
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -66,12 +68,20 @@ public class ContainerMGManager : MicroGameManager
         if (leftAlien.transform.position.y < -5 || rightAlien.transform.position.y < -5)
         {
             Debug.Log("womp womp");
-            GameManager.Instance.EndMicrogame(false);
+            if (!ended)
+            {
+                GameManager.Instance.EndMicrogame(false);
+                ended = true;
+            }
         }
         if (collectedAliens == 2)
         {
             Debug.Log("yippee! you win!");
-            GameManager.Instance.EndMicrogame(true);
+            if (!ended)
+            {
+                GameManager.Instance.EndMicrogame(true);
+                ended = true;
+            }
         }
     }
 

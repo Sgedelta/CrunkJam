@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Sprite> gameRInstructions;
     [SerializeField] List<Sprite> numberSprites;
 
-    Dictionary<string, Tuple<Sprite, Sprite>> minigameInstructionDict = new Dictionary<string, Tuple<Sprite, Sprite>>();
+    Dictionary<string, Tuple<Sprite, Sprite>> minigameInstructionDict;
 
     //Bodge, this sucks ass and nuts - used (at least) in Start to "hide" button after doors close
     public Canvas UIRef;
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         //Check if there is no instance of this GameManager that exists.
-        if (Instance == null && Instance != this)
+        if (Instance == null || Instance == this)
         {
             //Set the gameObject this script is attached to as the single instance of the GameManager.
             Instance = this;
@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviour
             DEBUGForceMicroManager.Initialize(inputManager);
         }
 
+        minigameInstructionDict = new Dictionary<string, Tuple<Sprite, Sprite>>();
+
         //build dictionary so we can display instructions properly
         for (int i = 0; i < minigames.Count; i++)
         {
@@ -102,6 +104,8 @@ public class GameManager : MonoBehaviour
             }
 
             spriteTuple = new Tuple<Sprite, Sprite>(gameLInstructions[i], gameRInstructions[i]);
+
+            if (debug) Debug.Log($"Adding to instruction dict: {minigames[i]}: {spriteTuple.Item1.name}, {spriteTuple.Item2.name}");
 
             minigameInstructionDict.Add(minigames[i], spriteTuple);
         }
@@ -127,9 +131,6 @@ public class GameManager : MonoBehaviour
                 // SceneManager.LoadScene("EndScene");
                 Debug.Log("Game Run End\nScore: " + minigamesCompleted);
 
-#if UNITY_EDITOR
-                EditorApplication.ExitPlaymode();
-#endif
 
                 return;
             }
@@ -156,6 +157,10 @@ public class GameManager : MonoBehaviour
         //create door animator and parent to GameManager (so it doesn't get destroyed as the game goes on)
         DoorAnimationParent = Instantiate(DoorAnimationPrefab, transform);
 
+        DoorDisplayControl display = DoorAnimationParent.GetComponent<DoorDisplayControl>();
+        Debug.Log("Found Door Sprites: " + display);
+
+
         //wait for door animation to go through....
         yield return new WaitForSeconds(2f);
 
@@ -165,13 +170,13 @@ public class GameManager : MonoBehaviour
             string loadedGame = LoadNewMicrogame();
 
             //set the door sprites
-            DoorAnimationParent.GetComponent<DoorDisplayControl>()
-                .SetSprites(numberSprites[minigamesCompleted], minigameInstructionDict[loadedGame]);
+            Debug.Log("Calling Set Sprites");
+            yield return display.SetSprites(numberSprites[minigamesCompleted], minigameInstructionDict[loadedGame]);
 
         } 
         else
         {
-
+            SceneManager.LoadScene("EndScreen");
         }
 
         //wait for door animation to complete
@@ -233,13 +238,20 @@ public class GameManager : MonoBehaviour
         difficulty = 0;
 
         // Create a grabBag so that minigames will not repeat until the player sees all of them
-        List<string> minigamesCopy = minigames;
+        List<string> minigamesCopy = new List<string>();
+        
+        for(int i = 0; i < minigames.Count; i++)
+        {
+            minigamesCopy.Add(minigames[i]);
+        }
+
+
         string name = "";
         for (int i = 0; i < minigames.Count; i++)
         {
             // Take a random name from minigames that has not yet been selected,
             // assign it to the current grabBag position, then remove it from the pool
-            name = minigamesCopy[UnityEngine.Random.Range(0, minigames.Count)];
+            name = minigamesCopy[UnityEngine.Random.Range(0, minigamesCopy.Count)];
             grabBag.Add(name);
             minigamesCopy.Remove(name);
         }

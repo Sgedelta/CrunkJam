@@ -24,6 +24,9 @@ public class DefenseMGMangager : MicroGameManager
     float winTime = 5;
     float totalTime = 0;
 
+    bool ended = false;
+    bool started = false;
+
     public override void Initialize(InputManager im)
     {
 
@@ -36,6 +39,7 @@ public class DefenseMGMangager : MicroGameManager
 
         //load the scene
         LoadScene();
+        started = true;
     }
 
     public override void LoadScene()
@@ -54,15 +58,14 @@ public class DefenseMGMangager : MicroGameManager
         inputManager.OnBHeld.AddListener(MoveDown);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
+        if(!started)
+        {
+            return;
+        }
+
         timer += Time.deltaTime;
         totalTime += Time.deltaTime;
         if (timer > shootInterval)
@@ -81,7 +84,12 @@ public class DefenseMGMangager : MicroGameManager
                     lasersList.Remove(a);
                     GameObject.Destroy(a);
                     //If the player fails to protect a laser from reaching the screen)
-                    GameManager.Instance.EndMicrogame(false);
+                    if(!ended)
+                    {
+                        GameManager.Instance.EndMicrogame(false);
+                        ended = true;
+                    }
+
                     Debug.Log("Lmao bad");
                 }
             }
@@ -89,7 +97,11 @@ public class DefenseMGMangager : MicroGameManager
 
         if (totalTime > winTime)
         {
-            GameManager.Instance.EndMicrogame(true);
+            if (!ended)
+            {
+                GameManager.Instance.EndMicrogame(true);
+                ended = true;
+            }
         }
     }
 

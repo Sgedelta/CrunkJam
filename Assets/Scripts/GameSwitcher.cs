@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class GameSwitcher : MonoBehaviour
 {
+    [SerializeField] float initializationDelay = 3;
+
     public void LoadMicrogame(string sceneName)
     {
         Debug.Log("Loading the microgame : " + sceneName);
@@ -22,8 +25,8 @@ public class GameSwitcher : MonoBehaviour
         MicroGameManager microGameManager = FindFirstObjectByType<MicroGameManager>();
         if (microGameManager != null)
         {
-            Debug.Log("Found a microgameManager!!!");
-            GameManager.Instance.IntializeManager(microGameManager);
+            Debug.Log("Found a microgameManager!!! " + microGameManager.gameObject.name);
+            StartCoroutine(WaitToInit(microGameManager));
         }
         else
         {
@@ -31,5 +34,12 @@ public class GameSwitcher : MonoBehaviour
         }
 
         SceneManager.sceneLoaded -= OnSceneLoaded; //unsubscribe so it only runs once and doesnt call again.
+    }
+
+    private IEnumerator WaitToInit(MicroGameManager mm)
+    {
+        yield return new WaitForSeconds(initializationDelay);
+
+        GameManager.Instance.IntializeManager(mm);
     }
 }

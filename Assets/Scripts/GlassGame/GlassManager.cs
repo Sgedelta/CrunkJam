@@ -16,8 +16,14 @@ public class GlassManager : MicroGameManager
     float seconds;
     float milliseconds;
 
+    bool started = false;
+
     void Update()
     {
+        if (!started)
+        {
+            return;
+        }
         if (timer > 0)
         {
             timer -= Time.deltaTime;
@@ -44,6 +50,7 @@ public class GlassManager : MicroGameManager
         //initialize any variables you would normally do in Start here
 
         LoadScene();
+        started = true;
     }
 
     public override void LoadScene()

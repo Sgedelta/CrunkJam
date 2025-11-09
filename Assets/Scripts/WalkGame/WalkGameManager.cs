@@ -21,9 +21,6 @@ public class WalkGameManager : MicroGameManager
     [Header("TimerUI")]
     [SerializeField] private Text timerTextUI;
 
-    [Header("GameManager")]
-    [SerializeField] private GameObject gameManagerObj;
-
     private GameManager gameManagerScript;
 
     Vector2 screenMin;
@@ -47,10 +44,8 @@ public class WalkGameManager : MicroGameManager
         }
 
         // grab reference to Game Manager script
-        if (gameManagerObj) 
-        { 
-            gameManagerScript = gameManagerObj.GetComponent<GameManager>();
-        }
+
+        gameManagerScript = GameManager.Instance;
 
         // get min and max of the screen from camera viewport
         screenMin = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));

@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour
         keyA = GameManager.Instance.inputA.ToInputAction();
         keyB = GameManager.Instance.inputB.ToInputAction();
 
-        if(db)
+        
         keyA.started += (e) => {
             if (db) Debug.Log(e.interaction.ToString() + " A start");
             if (e.interaction is TapInteraction) 

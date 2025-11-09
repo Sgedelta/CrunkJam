@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DoorDisplayControl : MonoBehaviour
@@ -9,13 +10,16 @@ public class DoorDisplayControl : MonoBehaviour
     [SerializeField] private SpriteRenderer LNum;
 
 
-    public void SetSprites(Sprite numbers, Tuple<Sprite, Sprite> instructions)
+    public IEnumerator SetSprites(Sprite numbers, Tuple<Sprite, Sprite> instructions)
     {
+        Debug.Log("Setting Sprites!!");
+
         LInstruct.sprite = instructions.Item1;
         RInstruct.sprite = instructions.Item2;
 
         LNum.sprite = numbers;
         RNum.sprite = numbers;
+        yield return null;
     }
 
 }

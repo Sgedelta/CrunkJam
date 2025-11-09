@@ -20,6 +20,9 @@ public class CountMGManager: MicroGameManager
     [SerializeField] Vector2 maxBounds;
     [SerializeField] Vector2 minBounds;
     [SerializeField] float lilGuyMoveSpeed = 1f;
+
+    bool ended = false;
+    bool started = false;
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -30,6 +33,7 @@ public class CountMGManager: MicroGameManager
         
         //load the scene
         LoadScene();
+        started = true;
     }
 
     public override void LoadScene()
@@ -55,6 +59,11 @@ public class CountMGManager: MicroGameManager
 
     private void Update()
     {
+        if(!started)
+        {
+            return;
+        }
+
         timer += Time.deltaTime;
         //foreach (GameObject go in lilGuysArray)
         //{
@@ -97,13 +106,21 @@ public class CountMGManager: MicroGameManager
             {
                 //YOU WIN :D
                 Debug.Log("wahoo.gif");
-                GameManager.Instance.EndMicrogame(true);
+                if (!ended)
+                {
+                    GameManager.Instance.EndMicrogame(true);
+                    ended = true;
+                }
             }
             else
             {
                 //YOU LOSE >:(
                 Debug.Log("dumb ahh");
-                GameManager.Instance.EndMicrogame(false);
+                if (!ended)
+                {
+                    GameManager.Instance.EndMicrogame(false);
+                    ended = true;
+                }
             }
         }
         countText.text = currentCount.ToString();

@@ -41,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GlassGame.unity
     guid: c2f47431b85265b42922a373c71e2c61
+  - enabled: 1
+    path: Assets/Scenes/StompLevel.unity
+    guid: f958804f9d241604caddccde2cd75784
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
   m_UseUCBPForAssetBundles: 0

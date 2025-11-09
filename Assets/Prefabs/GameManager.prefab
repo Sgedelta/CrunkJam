@@ -53,13 +53,38 @@ MonoBehaviour:
   inputB: {fileID: -4370368960670153325, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
   DoorAnimationPrefab: {fileID: 360285786236704185, guid: b0a402b2a14dfc84daa4e3de32194839, type: 3}
   minigames:
+  - BogosGame
   - ContainerGame
-  - DefenseGame
-  - GlassGame
   - CountGame
+  - DefenseGame
+  - DontGame
+  - FeedGame
+  - GlassGame
+  - RunLevel
+  - StompLevel
   - WalkGame
-  gameLInstructions: []
-  gameRInstructions: []
+  gameLInstructions:
+  - {fileID: 21300000, guid: 9039d0f71ede29b4f883270ab03de549, type: 3}
+  - {fileID: 21300000, guid: f7747052479eb7c4180d75b87cbdf46a, type: 3}
+  - {fileID: 21300000, guid: b787fb8346816154b8475bdd696a0f42, type: 3}
+  - {fileID: 21300000, guid: d74e966fe0a95764daf33ffb67ceb5aa, type: 3}
+  - {fileID: 21300000, guid: 8eb5959825f6594469e434a8a656840f, type: 3}
+  - {fileID: 21300000, guid: 014a50d205f24234596f46350b2956d4, type: 3}
+  - {fileID: 21300000, guid: 08c07f06752a5a6418dd24535bf6b3c2, type: 3}
+  - {fileID: 21300000, guid: f2edce2a09924fc4b98f288a8d5e0ba8, type: 3}
+  - {fileID: 21300000, guid: c76797b41a5465347882c80c3d022cc8, type: 3}
+  - {fileID: 21300000, guid: 79ab79db8b3a2044b94ccdde052e5298, type: 3}
+  gameRInstructions:
+  - {fileID: 21300000, guid: 2a60aeabca8bf1146a8ffe114da9cdb3, type: 3}
+  - {fileID: 21300000, guid: 556eb558b4ce2b6448bc10b21b93f02b, type: 3}
+  - {fileID: 21300000, guid: 5880dd894aee9db45aa69dc0c2165f01, type: 3}
+  - {fileID: 21300000, guid: e4178c3e4bbf00b468be3dba572763c1, type: 3}
+  - {fileID: 21300000, guid: 476b0a4522cf6474a8df70c6dfc1eeed, type: 3}
+  - {fileID: 21300000, guid: cf245b3028d44664ba8493227a82cb9f, type: 3}
+  - {fileID: 21300000, guid: a77854f2f8a599f4c867094b82fd613e, type: 3}
+  - {fileID: 21300000, guid: 21ebffe4be0477645b79c5a0dfa64282, type: 3}
+  - {fileID: 21300000, guid: fcb40d854b879cd43bdc421a29a2ffca, type: 3}
+  - {fileID: 21300000, guid: f92a8e9e8062aee499e497654849445a, type: 3}
   numberSprites:
   - {fileID: 4778746081650195270, guid: 96f80985993c5a1488f905a6425479d4, type: 3}
   - {fileID: -4541665274747590006, guid: f8af114103fb6c34db3298fae6fecdb6, type: 3}
@@ -112,6 +137,7 @@ MonoBehaviour:
   - {fileID: 1523848383500469213, guid: 4ad9687eeb6d075459531bea794da759, type: 3}
   - {fileID: 7365635420615084912, guid: 4b209c89cbc938746a0401150c189747, type: 3}
   - {fileID: -1130869900564863899, guid: 90962c95060d7dd46a698d7054a2fb89, type: 3}
+  UIRef: {fileID: 0}
 --- !u!114 &5741200061130516715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +190,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58e484228b5a08548be96a0dfcdf8840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initializationDelay: 5
