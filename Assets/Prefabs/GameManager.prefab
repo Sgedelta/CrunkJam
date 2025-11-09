@@ -48,8 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debug: 0
   DEBUGForceMicroManager: {fileID: 0}
-  inputA: 49
-  inputB: 53
+  DEBUGForceGameLoad: 
+  inputA: {fileID: 4504277700501639523, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
+  inputB: {fileID: -4370368960670153325, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
   minigames:
   - 
 --- !u!114 &7041452846072409226
@@ -77,6 +78,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnBHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBothHeld:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAHoldReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBHoldReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBothHoldReleased:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5055766356869475791
