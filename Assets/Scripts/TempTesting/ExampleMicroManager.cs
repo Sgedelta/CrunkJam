@@ -25,12 +25,6 @@ public class ExampleMicroManager : MicroGameManager
             GameManager.Instance.EndMicrogame(true);
         }
     }
-
-    private void Update()
-    {
-        Move(moveDir);
-    }
-
     public override void LoadScene()
     {
         //Don't do nutin
