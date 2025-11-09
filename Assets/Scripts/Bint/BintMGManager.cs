@@ -22,12 +22,13 @@ public class BintMGManager : MicroGameManager
     private bool isRight = false;
 
     private int shakes = 0;
-    [SerializeField] private int shakesGoal;
+    private int shakesGoal;
 
     private float timer = 0;
-    [SerializeField] private float gameOverTimer = 20;
+    private float gameOverTimer = 20;
 
-    [SerializeField] private float difficultyCoeff;
+    bool ended = false;
+
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -47,13 +48,15 @@ public class BintMGManager : MicroGameManager
 
         if(timer > gameOverTimer)
         {
-            GameManager.Instance.EndMicrogame(false);
+            if(!ended)GameManager.Instance.EndMicrogame(false);
+            ended=true;
         }
 
         if(shakes > shakesGoal)
         {
             BintingSuccessful();
-            //GameManager.Instance.EndMicrogame(true);
+            if(!ended)GameManager.Instance.EndMicrogame(true);
+            ended=true;
         }
         Debug.Log(shakes);
 

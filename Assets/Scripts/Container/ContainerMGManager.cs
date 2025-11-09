@@ -49,7 +49,7 @@ public class ContainerMGManager : MicroGameManager
 
     private void Start()
     {
-        bucket.GetComponent<Rigidbody2D>().linearVelocityX = moveSpeed * GameManager.Instance.Difficulty;
+        bucket.GetComponent<Rigidbody2D>().linearVelocityX = moveSpeed * (1+ GameManager.Instance.Difficulty);
     }
 
     private void Update()
