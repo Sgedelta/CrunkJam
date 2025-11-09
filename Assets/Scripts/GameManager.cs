@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<Sprite> numberSprites;
 
     Dictionary<string, Tuple<Sprite, Sprite>> minigameInstructionDict = new Dictionary<string, Tuple<Sprite, Sprite>>();
+
+    //Bodge, this sucks ass and nuts - used (at least) in Start to "hide" button after doors close
+    public Canvas UIRef;
     
     List<string> grabBag;    // The list of minigames, sorted at random per game, to be played in that order so that the player sees all minigames before true random
 
@@ -136,7 +139,16 @@ public class GameManager : MonoBehaviour
             minigamesCompleted++;
         }
 
-        StartCoroutine(RunDoorAnimationAndNextGameCoroutine(health <= 0));
+        StartCoroutine(RunDoorAnimationAndNextGameCoroutine(health > 0));
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(RunDoorAnimationAndNextGameCoroutine(true));
+        if (UIRef != null)
+        {
+            //Destroy(UIRef);
+        }
     }
 
     private IEnumerator RunDoorAnimationAndNextGameCoroutine(bool alive)
