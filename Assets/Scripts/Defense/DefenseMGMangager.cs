@@ -24,7 +24,7 @@ public class DefenseMGMangager : MicroGameManager
     float winTime = 5;
     float totalTime = 0;
 
-    public override void Initialize(InputManager im, int difficulty)
+    public override void Initialize(InputManager im)
     {
 
         //these two steps should always be done
@@ -32,7 +32,7 @@ public class DefenseMGMangager : MicroGameManager
         BindInput(); //this has to be made later
 
         //initialize any variables you would normally do in Start here
-        shootInterval = (shootInterval + difficulty) / Mathf.Max(difficulty, 1);
+        shootInterval = (shootInterval + GameManager.Instance.Difficulty) / Mathf.Max(GameManager.Instance.Difficulty, 1);
 
         //load the scene
         LoadScene();

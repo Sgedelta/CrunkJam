@@ -23,7 +23,7 @@ public class RunMGManager : MicroGameManager
     private float timer = 0;
     public float difficultyCoeff = 1f;
 
-    public override void Initialize(InputManager im, int difficulty)
+    public override void Initialize(InputManager im)
     {
         //these two steps should always be done
         inputManager = im;

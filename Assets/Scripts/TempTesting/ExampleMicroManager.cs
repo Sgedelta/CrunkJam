@@ -18,7 +18,7 @@ public class ExampleMicroManager : MicroGameManager
 
     private int moveDir = 0;
 
-    public override void Initialize(InputManager im, int difficulty)
+    public override void Initialize(InputManager im)
     {
         //these two steps should always be done
         inputManager = im;
@@ -26,7 +26,7 @@ public class ExampleMicroManager : MicroGameManager
 
         //initialize any variables you would normally do in Start here
         //such as - difficulty!
-        moveSpeed *= Mathf.Max(difficulty, 1);
+        moveSpeed *= Mathf.Max(GameManager.Instance.Difficulty, 1);
 
         //load the scene
         LoadScene();

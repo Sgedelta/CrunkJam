@@ -269,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
       propertyPath: DEBUGForceMicroManager
       value: 
-      objectReference: {fileID: 524997388}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -344,7 +344,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.53, y: 1.732}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -404,7 +404,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.53, y: 1.732}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.53, y: 1.732}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -923,7 +923,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7735849, g: 0.5768895, b: 0.38971162, a: 1}
+  m_Color: {r: 0.81886786, g: 0.7380886, b: 0.49286574, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1706,12 +1706,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -954369701412654907, guid: dc27033b85b59ac43b1e48df13633b94, type: 3}
-  m_Color: {r: 0, g: 0.9852772, b: 1, a: 1}
+  m_Sprite: {fileID: -7426380684119470957, guid: fac29ad6a8c314441829ff3d5336a0f3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.53, y: 1.732}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1770,8 +1770,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.53, y: 1.732}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.208, y: 1.692}
+    newSize: {x: 1.53, y: 1.732}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
         if (DEBUG && DEBUGForceMicroManager != null)
         {
-            DEBUGForceMicroManager.Initialize(inputManager, difficulty);
+            DEBUGForceMicroManager.Initialize(inputManager);
         }
     }
 
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
     /// <param name="mm"></param>
     public void IntializeManager(MicroGameManager mm)
     {
-        mm.Initialize(inputManager, difficulty);
+        mm.Initialize(inputManager);
     }
 
     // To call before any new run starts
