@@ -8,82 +8,87 @@ public class ExampleMicroManager : MicroGameManager
     // primarily made to provide an example and test input methods
     // you would put the rules for the game here, easily readable by everyone!
 
-    //Needed Vars
-    [SerializeField] private float moveSpeed = 3;
-    [SerializeField] private float rotationAmnt = 30;
-    [SerializeField] private GameObject player;
-
-    private Vector2 dir = Vector2.right;
-    private float dirAngle = 0;
-
-    public override void Initialize(InputManager im)
+    [SerializeField] private float countdown = 10;
+    public override void Initialize(InputManager im, int difficulty)
     {
         //these two steps should always be done
         inputManager = im;
         BindInput(); //this has to be made later
-    
-        //initialize any variables you would normally do in Start here
 
+    }
 
-        //load the scene
-        LoadScene();
+    private void Update()
+    {
+        countdown -= Time.deltaTime;
+        if(countdown <= 0)
+        {
+            GameManager.Instance.EndMicrogame(true);
+        }
     }
 
     public override void LoadScene()
     {
-        //set up the scene to play
-        player.transform.position = Vector3.zero;
+        //Don't do nutin
     }
 
     public override void UnloadScene()
     {
-        //this currently does not require any unloading, as it is for testing
+        //Don't do nutin
     }
+
 
     protected override void BindInput()
     {
-        inputManager.OnAPressed.AddListener(RotateCounterClockwise);
-        inputManager.OnBPressed.AddListener(RotateClockwise);
+        inputManager.OnAPressed.AddListener(() => {
+            Lose();
+            Debug.Log("A Pressed Listener");
+        });
+        inputManager.OnBPressed.AddListener(() => {
+            Lose();
+            Debug.Log("B Pressed Listener");
+        });
 
-        inputManager.OnAHeld.AddListener(MoveNeg);
-        inputManager.OnBHeld.AddListener(MovePos);
+        inputManager.OnAHeld.AddListener(() => {
+            Lose();
+            Debug.Log("A Held Listener");
+        });
+        inputManager.OnBHeld.AddListener(() => {
+            Lose();
+            Debug.Log("B Held Listener");
+        });
+
+        inputManager.OnAHoldReleased.AddListener(() => {
+            Lose();
+            Debug.Log("A Released Listener");
+        });
+        inputManager.OnBHoldReleased.AddListener(() => {
+            Lose();
+            Debug.Log("B Released Listener");
+        });
+
+        inputManager.OnBothPressed.AddListener(() =>
+        {
+            Debug.Log("Both Pressed Listener");
+            Lose();
+        });
+
+        inputManager.OnBothHeld.AddListener(() =>
+        {
+            Debug.Log("Both Held Listener");
+            Lose();
+        });
+
+        inputManager.OnBothHoldReleased.AddListener(() =>
+        {
+            Debug.Log("Both Released Listener");
+            Lose();
+        });
     }
 
-    public void Move(int moveDirection)
+    public void Lose()
     {
-        player.transform.position += (Vector3)dir * moveSpeed * moveDirection * Time.deltaTime;
-    }
-
-    public void MovePos()
-    {
-        Move(1);
-    }
-
-    public void MoveNeg()
-    {
-        Move(-1);
-    }
-
-    public void Rotate(float degrees)
-    {
-        //update angle
-        dirAngle += degrees;
-
-        //radians
-        float dirAngleRad = Mathf.Deg2Rad * dirAngle;
-
-        //update moveDirection with angle
-        dir = new Vector2(Mathf.Cos(dirAngleRad), Mathf.Sin(dirAngleRad));
-    }
-
-    public void RotateClockwise()
-    {
-        Rotate(rotationAmnt);
-    }
-
-    public void RotateCounterClockwise()
-    {
-        Rotate(-rotationAmnt);
+        Debug.Log("You had one fucking job)");
+        GameManager.Instance.EndMicrogame(false);
     }
 
 
