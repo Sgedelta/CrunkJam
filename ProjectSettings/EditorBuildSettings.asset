@@ -23,6 +23,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RunLevel.unity
     guid: 96e76c9c051159741b5542f1c94e2c3f
+  - enabled: 1
+    path: Assets/Scenes/WalkGame.unity
+    guid: d35d8a2607be7054a9031188a4bed1eb
+  - enabled: 1
+    path: Assets/Scenes/BogosGame.unity
+    guid: cd6380784e1255148a0281e7a93b146d
+  - enabled: 1
+    path: Assets/Scenes/CountGame.unity
+    guid: 8c4f305ffe08c5048855d6521ec7c1ab
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: 7f469c368c146744aa987eda5daf661b
+  - enabled: 1
+    path: Assets/Scenes/FeedGame.unity
+    guid: fda665f0fecc4d84d8eaa4999332526a
+  - enabled: 1
+    path: Assets/Scenes/GlassGame.unity
+    guid: c2f47431b85265b42922a373c71e2c61
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 86115939e848d664f8aa90ca97dcdcb0, type: 3}
   m_UseUCBPForAssetBundles: 0

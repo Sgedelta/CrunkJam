@@ -29,6 +29,7 @@ public class BintMGManager : MicroGameManager
 
     [SerializeField] private float difficultyCoeff;
     bool ended = false;
+
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -55,10 +56,14 @@ public class BintMGManager : MicroGameManager
         if(shakes > shakesGoal)
         {
             BintingSuccessful();
+
             if(!ended) GameManager.Instance.EndMicrogame(true);
             ended = true;
         }
-        //Debug.Log(shakes);
+
+        
+        Debug.Log(shakes);
+
 
     }
 

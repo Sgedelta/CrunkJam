@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public InputActionReference inputA;
     [SerializeField] public InputActionReference inputB;
+
+    [SerializeField] private GameObject DoorAnimationPrefab;
+    private GameObject DoorAnimationParent;
 
     private int minigamesCompleted = 0;  // functions as the score currently (can make a more true score later that is updated based on difficulty and speed)
 
@@ -40,6 +45,15 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] List<string> minigames;  // List of every potential minigame, the saved strings are the names of their scenes to be loaded
+    [SerializeField] List<Sprite> gameLInstructions;
+    [SerializeField] List<Sprite> gameRInstructions;
+    [SerializeField] List<Sprite> numberSprites;
+
+    Dictionary<string, Tuple<Sprite, Sprite>> minigameInstructionDict = new Dictionary<string, Tuple<Sprite, Sprite>>();
+
+    //Bodge, this sucks ass and nuts - used (at least) in Start to "hide" button after doors close
+    public Canvas UIRef;
+    
     List<string> grabBag;    // The list of minigames, sorted at random per game, to be played in that order so that the player sees all minigames before true random
 
     private void Awake()
@@ -76,6 +90,21 @@ public class GameManager : MonoBehaviour
         {
             DEBUGForceMicroManager.Initialize(inputManager);
         }
+
+        //build dictionary so we can display instructions properly
+        for (int i = 0; i < minigames.Count; i++)
+        {
+            Tuple<Sprite, Sprite> spriteTuple;
+            if(i > gameLInstructions.Count || i > gameRInstructions.Count)
+            {
+                Debug.LogError("more minigames than instructions!! Something's wrong!!!!");
+                break;
+            }
+
+            spriteTuple = new Tuple<Sprite, Sprite>(gameLInstructions[i], gameRInstructions[i]);
+
+            minigameInstructionDict.Add(minigames[i], spriteTuple);
+        }
     }
 
     /// <summary>
@@ -110,14 +139,58 @@ public class GameManager : MonoBehaviour
             minigamesCompleted++;
         }
 
-        //TODO: implement transition scene here (or in relevant GameSwitcher method)
-        LoadNewMicrogame();
+        StartCoroutine(RunDoorAnimationAndNextGameCoroutine(health > 0));
     }
+
+    public void StartGame()
+    {
+        StartCoroutine(RunDoorAnimationAndNextGameCoroutine(true));
+        if (UIRef != null)
+        {
+            //Destroy(UIRef);
+        }
+    }
+
+    private IEnumerator RunDoorAnimationAndNextGameCoroutine(bool alive)
+    {
+        //create door animator and parent to GameManager (so it doesn't get destroyed as the game goes on)
+        DoorAnimationParent = Instantiate(DoorAnimationPrefab, transform);
+
+        //wait for door animation to go through....
+        yield return new WaitForSeconds(2f);
+
+        if(alive)
+        {
+            //load a game
+            string loadedGame = LoadNewMicrogame();
+
+            //set the door sprites
+            DoorAnimationParent.GetComponent<DoorDisplayControl>()
+                .SetSprites(numberSprites[minigamesCompleted], minigameInstructionDict[loadedGame]);
+
+        } 
+        else
+        {
+
+        }
+
+        //wait for door animation to complete
+        yield return new WaitForSeconds(5f); //bit of buffer time here.
+
+
+        //destroy door animator after it's done animating (cleanup)
+        Destroy(DoorAnimationParent);
+
+        yield return null;
+
+
+    }
+
 
     /// <summary>
     /// Loads a random microgame from the bag if there are any in there, or a random one otherwise
     /// </summary>
-    public void LoadNewMicrogame()
+    public string LoadNewMicrogame() 
     {
         string chosenGame = "";
         // Regardless of if the last game was won or lost, so long as the player has health left (if they didn't this wouldn't run),
@@ -129,7 +202,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(minigames[Random.Range(0, minigames.Count)]);
+            SceneManager.LoadScene(minigames[UnityEngine.Random.Range(0, minigames.Count)]);
         }
 
         if (DEBUG && DEBUGForceGameLoad != null && DEBUGForceGameLoad != "")
@@ -139,6 +212,7 @@ public class GameManager : MonoBehaviour
 
         //TODO: implement transition scene here (or in GameSwitcher)
         gameSwitcher.LoadMicrogame(chosenGame);
+        return chosenGame;
     }
 
     /// <summary>
@@ -165,7 +239,7 @@ public class GameManager : MonoBehaviour
         {
             // Take a random name from minigames that has not yet been selected,
             // assign it to the current grabBag position, then remove it from the pool
-            name = minigamesCopy[Random.Range(0, minigames.Count)];
+            name = minigamesCopy[UnityEngine.Random.Range(0, minigames.Count)];
             grabBag.Add(name);
             minigamesCopy.Remove(name);
         }
