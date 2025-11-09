@@ -76,7 +76,7 @@ public class CountMGManager: MicroGameManager
         //}
         for (int i = 0; i < lilGuysArray.Length; i++)
         {
-            if (lilGuysArray[i].GetComponent<Rigidbody2D>().linearVelocityX > 0) lilGuysArray[i].transform.Rotate(new Vector3(0, 0, 1));
+            if (lilGuysArray[i].GetComponent<Rigidbody2D>().linearVelocityX > 0) lilGuysArray[i].transform.Rotate(new Vector3(0, 0, -.5f));
 
             if (lilGuysArray[i].transform.position.x > 7 && lilGuysArray[i].GetComponent<Rigidbody2D>().linearVelocityX > 0)
             {
@@ -88,7 +88,7 @@ public class CountMGManager: MicroGameManager
                 lilGuysArray[i].transform.position = new Vector3(lilGuysArray[i].transform.position.x + .1f, lilGuysArray[i].transform.position.y, lilGuysArray[i].transform.position.z);
                 ReverseDirection(lilGuysArray[i]);
             }
-            if (lilGuysArray[i].GetComponent<Rigidbody2D>().linearVelocityX < 0) lilGuysArray[i].transform.Rotate(new Vector3(0, 0, -1));
+            if (lilGuysArray[i].GetComponent<Rigidbody2D>().linearVelocityX < 0) lilGuysArray[i].transform.Rotate(new Vector3(0, 0, .5f));
 
         }
         if(timer >= gameOverTime)
@@ -97,11 +97,13 @@ public class CountMGManager: MicroGameManager
             {
                 //YOU WIN :D
                 Debug.Log("wahoo.gif");
+                GameManager.Instance.EndMicrogame(true);
             }
             else
             {
                 //YOU LOSE >:(
                 Debug.Log("dumb ahh");
+                GameManager.Instance.EndMicrogame(false);
             }
         }
         countText.text = currentCount.ToString();
@@ -122,7 +124,7 @@ public class CountMGManager: MicroGameManager
     }
     private void SpawnLilGuys()
     {
-        guyNumToSpawn = (int)UnityEngine.Random.Range(0, (15 * difficultyCoeff));
+        guyNumToSpawn = (int)UnityEngine.Random.Range(0, (15 * GameManager.Instance.Difficulty));
         lilGuysArray = new GameObject[guyNumToSpawn];
 
         for (int i = 0; i < guyNumToSpawn; i++)
