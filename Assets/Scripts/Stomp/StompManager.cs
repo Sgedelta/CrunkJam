@@ -12,7 +12,7 @@ public class StompManager : MicroGameManager
     [SerializeField] private float cooldown = 0;
 
     [SerializeField] private Spawner spawner;
-    public override void Initialize(InputManager im, int difficulty)
+    public override void Initialize(InputManager im)
     {
         //these two steps should always be done
         inputManager = im;

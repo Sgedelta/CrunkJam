@@ -3,7 +3,7 @@ using UnityEngine;
 public class Dont : MicroGameManager
 {
     [SerializeField] private float countdown = 10;
-    public override void Initialize(InputManager im, int difficulty)
+    public override void Initialize(InputManager im)
     {
         //these two steps should always be done
         inputManager = im;

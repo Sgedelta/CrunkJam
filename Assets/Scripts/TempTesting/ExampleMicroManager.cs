@@ -34,11 +34,7 @@ public class ExampleMicroManager : MicroGameManager
 
     private void Update()
     {
-        countdown -= Time.deltaTime;
-        if(countdown <= 0)
-        {
-            GameManager.Instance.EndMicrogame(true);
-        }
+        
     }
     public override void LoadScene()
     {
