@@ -96,16 +96,14 @@ public class InputManager : MonoBehaviour
                 if (bState == InputStates.Held)
                 {
                     OnBothHoldReleased?.Invoke();
-                    aState = InputStates.None;
-                    bState = InputStates.None;
-                    if (db) Debug.Log("Both HolDreleased from A");
+                    if (db) Debug.Log("Both HoldReleased from A");
                 }
                 else
                 {
                     OnAHoldReleased?.Invoke(); 
-                    aState = InputStates.None;
                     if (db) Debug.Log("A Hold Released");
                 }
+                aState = InputStates.None;
             }
 
             if(e.interaction is TapInteraction)
@@ -126,7 +124,8 @@ public class InputManager : MonoBehaviour
             if (e.interaction is TapInteraction)
             {
                 bState = InputStates.Tap;
-                if (db) Debug.Log("B Tap");
+                if (db) Debug.Log("B Tap Set");
+                if (db) Debug.Log("A state is " + aState);
             }
         };
         keyB.performed += (e) => {
@@ -141,7 +140,7 @@ public class InputManager : MonoBehaviour
                 else
                 {
                     OnBHeld?.Invoke();
-                    if (db) Debug.Log("B Held ");
+                    if (db) Debug.Log("B Held Trigger");
                 }
 
             }
@@ -153,7 +152,7 @@ public class InputManager : MonoBehaviour
                     OnBothPressed?.Invoke();
                     aState = InputStates.None;
                     bState = InputStates.None;
-                    if (db) Debug.Log("Both from B");
+                    if (db) Debug.Log("Both tap from B");
 
 
                 }
@@ -172,16 +171,15 @@ public class InputManager : MonoBehaviour
                 if (aState == InputStates.Held)
                 {
                     OnBothHoldReleased?.Invoke();
-                    aState = InputStates.None;
-                    bState = InputStates.None;
+                    //aState = InputStates.None;
                     if (db) Debug.Log("Both Held Released from B");
                 }
                 else
                 {
                     OnBHoldReleased?.Invoke();
-                    bState = InputStates.None;
                     if (db) Debug.Log("B Held Released");
                 }
+                bState = InputStates.None;
             }
 
             if (e.interaction is TapInteraction)

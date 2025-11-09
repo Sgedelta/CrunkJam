@@ -18,14 +18,15 @@ public class ExampleMicroManager : MicroGameManager
 
     private int moveDir = 0;
 
-    public override void Initialize(InputManager im)
+    public override void Initialize(InputManager im, int difficulty)
     {
         //these two steps should always be done
         inputManager = im;
         BindInput(); //this has to be made later
-    
-        //initialize any variables you would normally do in Start here
 
+        //initialize any variables you would normally do in Start here
+        //such as - difficulty!
+        moveSpeed *= Mathf.Max(difficulty, 1);
 
         //load the scene
         LoadScene();
@@ -60,17 +61,20 @@ public class ExampleMicroManager : MicroGameManager
 
         inputManager.OnBothPressed.AddListener(() =>
         {
-            Debug.Log("Both Pressed");
+            Debug.Log("Both Pressed Listener");
+            
         });
 
         inputManager.OnBothHeld.AddListener(() =>
         {
-            Debug.Log("Both Held");
+            Debug.Log("Both Held Listener");
+            MoveReset();
         });
 
         inputManager.OnBothHoldReleased.AddListener(() =>
         {
-            Debug.Log("Both Released");
+            Debug.Log("Both Released Listener");
+            MoveReset();
         });
     }
 

@@ -719,8 +719,20 @@ PrefabInstance:
       value: InputTesting
       objectReference: {fileID: 0}
     - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
+      propertyPath: minigames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
       propertyPath: 'minigames.Array.data[0]'
-      value: InputTesting
+      value: ContainerLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
+      propertyPath: 'minigames.Array.data[1]'
+      value: DefenseLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466112790027996103, guid: 78602f3ccc2e776439d943a56b167f6c, type: 3}
+      propertyPath: 'minigames.Array.data[2]'
+      value: RunLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

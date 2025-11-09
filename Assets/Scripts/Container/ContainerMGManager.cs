@@ -13,7 +13,7 @@ public class ContainerMGManager : MicroGameManager
     [SerializeField] private GameObject rightAlien;
 
     private int collectedAliens = 0;
-    public override void Initialize(InputManager im)
+    public override void Initialize(InputManager im, int difficulty)
     {
         //these two steps should always be done
         inputManager = im;

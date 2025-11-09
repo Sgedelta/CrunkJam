@@ -24,7 +24,7 @@ public class DefenseMGMangager : MicroGameManager
     public float difficultyCoeff = 1;
 
 
-    public override void Initialize(InputManager im)
+    public override void Initialize(InputManager im, int difficulty)
     {
 
         //these two steps should always be done

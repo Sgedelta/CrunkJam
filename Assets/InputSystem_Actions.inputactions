@@ -12,7 +12,7 @@
                     "id": "ff7d4176-888f-45b7-8919-4e5fb2777898",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Tap(duration=0.13),Hold(duration=0.15)",
+                    "interactions": "Tap,Hold(duration=0.1)",
                     "initialStateCheck": false
                 },
                 {
@@ -21,7 +21,7 @@
                     "id": "f44ecece-944b-49da-8c3a-67d4217b3f42",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Tap(duration=0.13),Hold(duration=0.15)",
+                    "interactions": "Tap,Hold(duration=0.1)",
                     "initialStateCheck": false
                 }
             ],
