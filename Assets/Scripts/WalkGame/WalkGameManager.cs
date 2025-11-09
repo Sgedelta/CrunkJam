@@ -57,7 +57,7 @@ public class WalkGameManager : MicroGameManager
         screenMax = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
         // initialize timer text ui
-        timerTextUI.text = string.Format("Time: {0:F2}", timer);
+        timerTextUI.text = string.Format("{0:F2}", timer);
     }
 
     private void Update()
@@ -80,8 +80,8 @@ public class WalkGameManager : MicroGameManager
 
     protected override void BindInput()
     {
-        inputManager.OnAHeld.AddListener(MoveRight);
-        inputManager.OnBHeld.AddListener(MoveUp);
+        inputManager.OnBHeld.AddListener(MoveRight);
+        inputManager.OnAHeld.AddListener(MoveUp);
 
         inputManager.OnAHoldReleased.AddListener(MoveRightReset);
         inputManager.OnBHoldReleased.AddListener(MoveUpReset);
@@ -143,7 +143,7 @@ public class WalkGameManager : MicroGameManager
             timer -= Time.deltaTime;
         }
         
-        timerTextUI.text = string.Format("Time: {0:F2}", timer);
+        timerTextUI.text = string.Format("{0:F2}", timer);
 
         if (timer <= 0)
         {

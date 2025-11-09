@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 struct Food
 {
@@ -12,6 +13,8 @@ struct Food
 
 public class FeedGameManager : MicroGameManager
 {
+    public Sprite cake;
+    public Sprite donut;
     public bool feedingLeft = false;
     public bool feedingRight = false;
     public int iterator = 0;
@@ -42,7 +45,7 @@ public class FeedGameManager : MicroGameManager
     private Food[] foods;
 
     // How fast the food moves across the screen
-    private int moveSpeed = 8;
+    private int moveSpeed = 10;
 
     // Keeps track of how many times the player made the correct choice in feeding aliens
     public int count;
@@ -66,7 +69,7 @@ public class FeedGameManager : MicroGameManager
         screenMax = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
         // initialize timer text ui
-        timerTextUI.text = string.Format("Time: {0:F2}", timer);
+        timerTextUI.text = string.Format("{0:F2}", timer);
 
     }
 
@@ -95,27 +98,36 @@ public class FeedGameManager : MicroGameManager
     private void Start()
     {
         foodsContainer = GameObject.FindGameObjectsWithTag("food");
-        foods = new Food[5];
+        int x = GameManager.Instance.Difficulty + 5;
+        foods = new Food[x];
 
-        int i = 0;
-        foreach(GameObject f in foodsContainer)
+        for (int i = 0; i < foodsContainer.Length; i++)
         {
-            foods[i].gameObject = f;
-            foods[i].gameObject.transform.position = new Vector3((screenMin.x + screenMax.x) / 2, (screenMin.y + screenMax.y)/2, 0);
+            foods[i].gameObject = foodsContainer[i];
+            foods[i].gameObject.transform.position = new Vector3((screenMin.x + screenMax.x) / 2, (screenMin.y + screenMax.y)/2, 2);
             foods[i].color = GetRandomAOrB(-1, 1);
-            i++;
+            if (foods[i].color == -1)
+                foods[i].gameObject.GetComponent<SpriteRenderer>().sprite = donut;
+            else if (foods[i].color == 1)
+                foods[i].gameObject.GetComponent<SpriteRenderer>().sprite = cake;
+            foods[i].gameObject.GetComponent<FoodItem>().Color = foods[i].color;
+            Debug.Log(foods[i].color.ToString() + " " + foods[i].gameObject.GetComponent<SpriteRenderer>().sprite.name);
         }
     }
 
     private void Update()
     {
-        if (isGameOver) return;
+        if (isGameOver || isGameWon) return;
 
         UpdateTimer();
 
         if(foods.Length > 0 && iterator < foods.Length)
         {
             UpdateFoods();
+        }
+        else
+        {
+            GameOver();
         }
     }
 
@@ -194,7 +206,7 @@ public class FeedGameManager : MicroGameManager
             timer -= Time.deltaTime;
         }
 
-        timerTextUI.text = string.Format("Time: {0:F2}", timer);
+        timerTextUI.text = string.Format("{0:F2}", timer);
 
         if (timer <= 0)
         {
@@ -209,6 +221,7 @@ public class FeedGameManager : MicroGameManager
     {
         isGameWon = true;
         gameManagerScript.EndMicrogame(true);
+        Debug.Log("Game Won");
     }
 
     /// <summary>
@@ -218,6 +231,7 @@ public class FeedGameManager : MicroGameManager
     {
         isGameOver = true;
         gameManagerScript.EndMicrogame(false);
+        Debug.Log("Game Lost");
     }
 
     /// <summary>
@@ -226,6 +240,12 @@ public class FeedGameManager : MicroGameManager
     public void ReadyNextFood()
     {
         iterator++;
+        if (iterator < 5)
+            foods[iterator].gameObject.transform.position = new Vector3((screenMin.x + screenMax.x) / 2, (screenMin.y + screenMax.y) / 2, -1);
+        else
+        {
+            GameWon();
+        }
         feedingLeft = false;
         feedingRight = false;
     }

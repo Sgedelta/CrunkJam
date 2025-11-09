@@ -29,29 +29,30 @@ public class RedGuy : MonoBehaviour
             FoodItem foodItem = collision.gameObject.GetComponent<FoodItem>();
          
             // Food is the same color as Alien, they like it!
-            if (color == foodItem.color)
+            if (color == foodItem.Color)
             {
-                Debug.Log("Alien Likes the Food");
+                Debug.Log("Right\n Alien color: " + color.ToString() + " food color: " + foodItem.Color.ToString());
                 feedGameManagerScript.count++;
 
             }
             // Food is not the same color as Alien, they do not like it!
-            else if(color != foodItem.color) 
+            else if(color != foodItem.Color) 
             {
-                Debug.Log("Alien Does Not Like the Food");
+                Debug.Log("Wrong\n Alien color: " + color.ToString() + " food color: " + foodItem.Color.ToString());
                 // If player feeds wrong food to alien, game over!
-                //feedGameManagerScript.GameOver();
+                feedGameManagerScript.GameOver();
             }
 
-            // Hook up Win State here!
+            // Hook up Win State here! Render edit: (handled within feedGameManager)
             if (feedGameManagerScript.count >= 5)
             {
                 Debug.Log("go next level");
-                feedGameManagerScript.GameWon();
+                //feedGameManagerScript.GameWon();
             }
 
             // Sets necessary variables for next food item
-            collision.gameObject.GetComponent<Renderer>().enabled = false;
+            //collision.gameObject.GetComponent<Renderer>().enabled = false;
+            Destroy(collision.gameObject);
             feedGameManagerScript.ReadyNextFood();
         }
     }

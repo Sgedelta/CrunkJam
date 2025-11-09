@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class FoodItem : MonoBehaviour
 {
-    public int color;
+    private int color;
+    public int Color {  get { return color; } set {  color = value; } }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        color = GetRandomAOrB(-1, 1);
+        //color = GetRandomAOrB(-1, 1);
     }
 
     // Update is called once per frame
