@@ -16,14 +16,18 @@ public class BintMGManager : MicroGameManager
     [SerializeField] private Vector2 bogoRightPos;
     [SerializeField] private Vector3 bogoRotation;
 
+    [SerializeField] private Sprite binted;
+
     private bool isLeft = false;
     private bool isRight = false;
 
     private int shakes = 0;
-    private int shakesGoal = 50;
+    [SerializeField] private int shakesGoal;
 
     private float timer = 0;
-    private float gameOverTimer = 20;
+    [SerializeField] private float gameOverTimer = 20;
+
+    [SerializeField] private float difficultyCoeff;
     public override void Initialize(InputManager im)
     {
         //these two steps should always be done
@@ -31,7 +35,7 @@ public class BintMGManager : MicroGameManager
         BindInput(); //this has to be made later
 
         //initialize any variables you would normally do in Start here
-
+        shakesGoal = (int)(25 * difficultyCoeff);
 
         //load the scene
         LoadScene();
@@ -48,7 +52,8 @@ public class BintMGManager : MicroGameManager
 
         if(shakes > shakesGoal)
         {
-            GameManager.Instance.EndMicrogame(true);
+            BintingSuccessful();
+            //GameManager.Instance.EndMicrogame(true);
         }
         Debug.Log(shakes);
 
@@ -70,7 +75,7 @@ public class BintMGManager : MicroGameManager
     {
         inputManager.OnAPressed.AddListener(ShakeLeft);
         inputManager.OnBPressed.AddListener(ShakeRight);
-
+        inputManager.OnBothPressed.AddListener(ShakeBoth);
     }
     public void ShakeLeft()
     {
@@ -93,5 +98,14 @@ public class BintMGManager : MicroGameManager
             isRight = true;
             shakes++;
         }
+    }
+    public void ShakeBoth()
+    {
+        if (isLeft) ShakeLeft();
+        else if (isRight) ShakeRight();
+    }
+    public void BintingSuccessful()
+    {
+        bogo.GetComponent<SpriteRenderer>().sprite = binted;
     }
 }
